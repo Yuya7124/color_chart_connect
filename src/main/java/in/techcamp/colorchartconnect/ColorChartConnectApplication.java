@@ -9,5 +9,4 @@ public class ColorChartConnectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ColorChartConnectApplication.class, args);
 	}
-
 }
