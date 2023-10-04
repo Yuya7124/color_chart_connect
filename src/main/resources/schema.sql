@@ -1,4 +1,10 @@
-CREATE TABLE IF NOT EXISTS color_charts (
+CREATE TABLE IF NOT EXISTS user {
+    nickname VARCHAR(256) NOT NULL,
+    email VARCHAR(256) NOT NULL,
+    password VARCHAR(100) NOT NULL
+}
+
+CREATE TABLE IF NOT EXISTS color_chart (
     product_id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     part VARCHAR(256) NOT NULL,
     maker VARCHAR(256) NOT NULL,
@@ -8,3 +14,5 @@ CREATE TABLE IF NOT EXISTS color_charts (
     coat INTEGER NOT NULL,
     ratio INTEGER NOT NULL
 );
+
+
