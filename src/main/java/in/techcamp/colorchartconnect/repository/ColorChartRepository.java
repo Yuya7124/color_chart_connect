@@ -1,5 +1,6 @@
-package in.techcamp.colorchartconnect;
+package in.techcamp.colorchartconnect.repository;
 
+import in.techcamp.colorchartconnect.entity.ColorChartEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

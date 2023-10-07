@@ -1,5 +1,6 @@
-package in.techcamp.colorchartconnect;
+package in.techcamp.colorchartconnect.controller;
 
+import in.techcamp.colorchartconnect.repository.ColorChartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

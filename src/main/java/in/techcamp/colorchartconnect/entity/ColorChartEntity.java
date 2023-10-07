@@ -1,4 +1,4 @@
-package in.techcamp.colorchartconnect;
+package in.techcamp.colorchartconnect.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

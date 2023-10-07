@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録</title>
+</head>
+<body>
+<form id="signup-form" method="post" action="user/signup">
+    <h1 class="siginup_title">User Registration</h1>
+    <div class="nickname_group">
+        <label class="nickname_label">ニックネーム</label>
+        <input type="text" class="nickname_form">
+    </div>
+    <div class="email_group">
+        <label class="email_label">メールアドレス</label>
+        <input type="text" class="email_form">
+    </div>
+    <div class="password_group">
+        <label class="password_label">パスワード</label>
+        <input type="text" class="password_form">
+    </div>
+    <input type="submit" value="登録" class="signup_btn">
+</form>
+</body>
+</html>
