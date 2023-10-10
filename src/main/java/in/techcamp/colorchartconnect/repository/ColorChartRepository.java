@@ -8,6 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface ColorChartRepository {
-  @Select("select * from color_charts")
+  @Select("select * from color_chart")
   List<ColorChartEntity> findAll();
 }

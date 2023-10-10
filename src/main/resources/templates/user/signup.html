@@ -5,21 +5,21 @@
     <title>新規登録</title>
 </head>
 <body>
-<form id="signup-form" method="post" action="user/signup">
+<form id="signup-form" method="post" action="user/signup" class="form_signup" th:object="${signupEntity}">
     <h1 class="siginup_title">User Registration</h1>
     <div class="nickname_group">
         <label class="nickname_label">ニックネーム</label>
-        <input type="text" class="nickname_form">
+        <input type="text" class="nickname_form" th:field="*{nickname}">
     </div>
     <div class="email_group">
         <label class="email_label">メールアドレス</label>
-        <input type="text" class="email_form">
+        <input type="text" class="email_form" th:field="*{email}">
     </div>
     <div class="password_group">
         <label class="password_label">パスワード</label>
-        <input type="text" class="password_form">
+        <input type="text" class="password_form" th:field="*{password}">
     </div>
-    <input type="submit" value="登録" class="signup_btn">
+    <input type="submit" th:value="登録" class="signup_btn">
 </form>
 </body>
 </html>
