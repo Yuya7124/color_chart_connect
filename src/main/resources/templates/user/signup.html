@@ -9,15 +9,18 @@
     <h1 class="siginup_title">User Registration</h1>
     <div class="nickname_group">
         <label class="nickname_label">ニックネーム</label>
-        <input type="text" class="nickname_form" th:field="*{nickname}">
+        <input type="text" class="nickname_form" th:field="*{nickname}" th:errorclass="is-invalid">
+        <div class="invalid_feedback" th:errors="*{nickname}"></div>
     </div>
     <div class="email_group">
         <label class="email_label">メールアドレス</label>
-        <input type="text" class="email_form" th:field="*{email}">
+        <input type="text" class="email_form" th:field="*{email}" th:errorclass="is-invalid">
+        <div class="invalid_feedback" th:errors="*{email}"></div>
     </div>
     <div class="password_group">
         <label class="password_label">パスワード</label>
-        <input type="text" class="password_form" th:field="*{password}">
+        <input type="text" class="password_form" th:field="*{password}" th:errorclass="is-invalid">
+        <div class="invalid_feedback" th:errors="*{password}"></div>
     </div>
     <input type="submit" th:value="登録" class="signup_btn">
 </form>
