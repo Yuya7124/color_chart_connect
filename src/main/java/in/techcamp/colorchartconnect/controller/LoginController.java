@@ -13,6 +13,6 @@ public class LoginController {
 
   @PostMapping("/login")
   public String postLogin(){
-    return "redirect:";
+    return "redirect:/";
   }
 }

@@ -53,7 +53,7 @@ public class SignupController {
     //ユーザー登録
     userService.signup(user);
 
-    //ログイン画面へ
-    return "redirect:/login";
+    //メイン画面へ遷移
+    return "redirect:/";
   }
 }
