@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<!-- Header -->
+<nav layout:replace="~{layout/header::header}"></nav>
+<!-- contents -->
 カラーガイド一覧
 <ul th:each="color_chart:${colorchartList}">
     <li th:text="${color_chart.getPart()}">
