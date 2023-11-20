@@ -1,4 +1,4 @@
-package in.techcamp.colorchartconnect.repository;
+package in.techcamp.colorchartconnect.mapper;
 
 import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import org.apache.ibatis.annotations.Mapper;

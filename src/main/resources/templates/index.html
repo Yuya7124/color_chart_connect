@@ -10,6 +10,7 @@
 <nav layout:replace="~{layout/header::header}"></nav>
 <!-- contents -->
 カラーガイド一覧
+<a th:href="@{/product}">新規投稿画面</a>
 <ul th:each="color_chart:${colorchartList}">
     <li th:text="${color_chart.getPart()}">
     </li>
