@@ -1,11 +1,12 @@
 CREATE TABLE IF NOT EXISTS user (
-    nickname VARCHAR(256) PRIMARY KEY,
+    user_id BIGINT PRIMARY KEY,
+    nickname VARCHAR(256),
     email VARCHAR(256),
     password VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS product (
-    user_id VARCHAR(256) PRIMARY KEY,
+    user_id BIGINT PRIMARY KEY,
     product_name VARCHAR(256)
 );
 
