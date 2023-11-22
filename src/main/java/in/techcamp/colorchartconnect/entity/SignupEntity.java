@@ -10,6 +10,8 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 @Data
 public class SignupEntity {
+
+
   @NotBlank(groups = ValidGroup1.class)
   private String nickname;
   @NotBlank(groups = ValidGroup1.class)
