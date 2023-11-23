@@ -5,13 +5,22 @@
   <meta charset="UTF-8">
   <title>新規登録</title>
 </head>
-<body>
-<!-- Header -->
-<nav layout:replace="~{layout/header::header}"></nav>
-<h1>新規投稿ページ</h1>
-<form action="#" th:action="@{/product}" th:method="post" th:object="${product}">
-  <input type="text" id="summaryInput" th:field="*{product_name}">
-  <button type="submit">作成</button>
-</form>
-</body>
+  <body>
+  <!-- Header -->
+  <nav layout:replace="~{layout/header::header}"></nav>
+  <h1>新規投稿ページ</h1>
+    <form action="#" th:action="@{/product}" th:method="post" th:object="${product}" enctype="multipart/form-data">
+      <div class="product_name_title">Product Name
+        <input type="text" id="product-name" class="product" th:field="*{product_name}">
+      </div>
+      <div class="image">
+        <input type="file" name="file" id="file">
+        <img th:src="${'data:image/png;base64,'+image}" alt="">
+      </div>
+      <div class="product_comment_title">Comment
+        <textarea id="product-comment" class="my_comment" th:field="*{comment}"></textarea>
+      </div>
+      <button type="submit">作成</button>
+    </form>
+  </body>
 </html>

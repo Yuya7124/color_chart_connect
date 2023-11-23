@@ -25,9 +25,10 @@ public class ProductController {
   public String showProduct(@ModelAttribute("product") ProductEntity entity){
     return "product";
   }
+  //データ保存
   @PostMapping("/product")
   public String saveProduct(ProductEntity entity){
-    productMapper.insert(entity.getProduct_name());
+    productMapper.insert(entity);
     return "redirect:/";
   }
 }

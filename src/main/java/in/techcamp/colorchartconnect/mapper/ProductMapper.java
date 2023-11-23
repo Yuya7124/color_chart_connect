@@ -13,6 +13,8 @@ public interface ProductMapper {
   @Select("select * from color_chart")
   List<ProductEntity> findAll();
 
-  @Insert("insert into product(product_name) values (#{product_name})")
-  void insert(String product_name);
+
+
+  @Insert("INSERT INTO product(product_name, comment, type, data) VALUES (#{product_name}, #{comment}, #{type}, #{data})")
+  void insert(ProductEntity entity);
 }
