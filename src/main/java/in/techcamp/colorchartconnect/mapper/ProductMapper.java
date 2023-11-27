@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface ProductMapper {
-  @Select("select * from color_chart")
+  @Select("select * from product")
   List<ProductEntity> findAll();
 
 

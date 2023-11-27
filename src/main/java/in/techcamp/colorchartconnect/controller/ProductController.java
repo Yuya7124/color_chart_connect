@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class ProductController {
   private final ProductMapper productMapper;
-  @GetMapping("/products")
+  @GetMapping
   public String showProduct(Model model){
     var productList = productMapper.findAll();
     model.addAttribute("productList", productList);

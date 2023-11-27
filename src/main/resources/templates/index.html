@@ -12,8 +12,7 @@
 カラーガイド一覧
 <a th:href="@{/product}">新規投稿画面</a>
 <ul th:each="product:${productList}">
-    <li th:text="${product.getProductName()}"></li>
-    <li th:text="${product.getComment()}"></li>
+    <li th:text="${product.getProduct_name()}"></li>
 </ul>
 </body>
 </html>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @RequiredArgsConstructor
 public class ColorChartController {
   private final ColorChartMapper colorchartRepository;
-  @GetMapping
+  @GetMapping("/colorCharts")
   public String showList(Model model){
     var colorchartList = colorchartRepository.findAll();
     model.addAttribute("colorchartList", colorchartList);
