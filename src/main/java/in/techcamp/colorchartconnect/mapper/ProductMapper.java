@@ -12,9 +12,8 @@ import java.util.List;
 public interface ProductMapper {
   @Select("select * from product")
   List<ProductEntity> findAll();
-
-
-
   @Insert("INSERT INTO product(product_name, comment, type, data) VALUES (#{product_name}, #{comment}, #{type}, #{data})")
   void insert(ProductEntity entity);
+  @Select("select * from product where product_id = #{product_id}")
+  ProductEntity findById(long product_id);
 }

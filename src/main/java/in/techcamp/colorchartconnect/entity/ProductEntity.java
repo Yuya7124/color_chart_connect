@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Data
 public class ProductEntity {
+  private long product_id;
   @NotBlank
   private String product_name;
   private String comment;

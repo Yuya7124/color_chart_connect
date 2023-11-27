@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Chart Connect</title>
+</head>
+<body>
+  <!-- Header -->
+  <nav layout:replace="~{layout/header::header}"></nav>
+  <!-- contents -->
+  <h1>新規投稿ページ</h1>
+  <form action="#" th:action="@{/posts}" th:method="post" th:object="${postForm}">
+    <input type="text" id="summaryInput" th:field="*{memo}">
+    <button type="submit">作成</button>
+  </form>
+</body>
+</html>

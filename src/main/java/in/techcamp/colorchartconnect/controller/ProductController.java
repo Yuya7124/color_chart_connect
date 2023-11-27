@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -29,6 +30,14 @@ public class ProductController {
   @PostMapping("/product")
   public String saveProduct(ProductEntity entity){
     productMapper.insert(entity);
+
     return "redirect:/";
+  }
+
+  @GetMapping("/product/{product_id}")
+  public String productDetail(@PathVariable long product_id, Model model){
+    var product = productMapper.findById(product_id);
+    model.addAttribute("product", product);
+    return "detail";
   }
 }
