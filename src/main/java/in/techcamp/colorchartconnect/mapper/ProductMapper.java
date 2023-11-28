@@ -5,6 +5,7 @@ import in.techcamp.colorchartconnect.entity.ProductEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface ProductMapper {
   void insert(ProductEntity entity);
   @Select("select * from product where product_id = #{product_id}")
   ProductEntity findById(long product_id);
+  @Update("UPDATE product SET product_name = #{product_name}, comment = #{comment}, type = #{type}, data = #{data} WHERE product_id =#{product_id}")
+  void update(long product_id, String product_name, String comment, String type, byte[] data);
 }

@@ -40,4 +40,17 @@ public class ProductController {
     model.addAttribute("product", product);
     return "detail";
   }
+
+  @GetMapping("/product/{product_id}/edit")
+  public String productEdit(@PathVariable long product_id, Model model){
+    var product = productMapper.findById(product_id);
+    model.addAttribute("product", product);
+    return "edit";
+  }
+
+  @PostMapping("/product/{product_id}/edit")
+  public String productUpdate(@PathVariable long product_id, ProductEntity entity){
+    productMapper.update(product_id, entity.getProduct_name(), entity.getComment(), entity.getType(), entity.getData());
+    return "redirect:/";
+  }
 }
