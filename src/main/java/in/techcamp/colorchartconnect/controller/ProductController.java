@@ -51,6 +51,13 @@ public class ProductController {
   @PostMapping("/product/{product_id}/edit")
   public String productUpdate(@PathVariable long product_id, ProductEntity entity){
     productMapper.update(product_id, entity.getProduct_name(), entity.getComment(), entity.getType(), entity.getData());
+    return "redirect:/product/{product_id}";
+  }
+
+  @PostMapping("/product/{product_id}/delete")
+  public String productDelete(@PathVariable Long product_id){
+    productMapper.deleteById(product_id);
     return "redirect:/";
   }
+
 }

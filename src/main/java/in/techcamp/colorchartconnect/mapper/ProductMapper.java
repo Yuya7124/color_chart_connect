@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface ProductMapper {
   ProductEntity findById(long product_id);
   @Update("UPDATE product SET product_name = #{product_name}, comment = #{comment}, type = #{type}, data = #{data} WHERE product_id =#{product_id}")
   void update(long product_id, String product_name, String comment, String type, byte[] data);
+  @Delete("delete from product WHERE product_id = #{product_id}")
+  void deleteById(Long product_id);
 }
