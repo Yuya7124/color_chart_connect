@@ -30,7 +30,6 @@ public class ProductController {
   @PostMapping("/product")
   public String saveProduct(ProductEntity entity){
     productMapper.insert(entity);
-
     return "redirect:/";
   }
 
@@ -59,5 +58,4 @@ public class ProductController {
     productMapper.deleteById(product_id);
     return "redirect:/";
   }
-
 }
