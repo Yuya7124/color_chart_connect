@@ -12,8 +12,13 @@
 カラーガイド一覧
 <a th:href="@{/product}">新規投稿画面</a>
 <ul th:each="product:${productList}">
-    <li><a th:text="${product.getProduct_name()}"
-           th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a></li>
+    <li>
+        <div class="image_data">
+            <img th:src="${'data:image/png;base64,'+image}" alt="">
+        </div>
+        <a th:text="${product.getProduct_name()}"
+           th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
+    </li>
 </ul>
 </body>
 </html>

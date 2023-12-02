@@ -4,18 +4,25 @@ import in.techcamp.colorchartconnect.entity.ColorChartEntity;
 import in.techcamp.colorchartconnect.entity.ProductEntity;
 import in.techcamp.colorchartconnect.mapper.ColorChartMapper;
 import in.techcamp.colorchartconnect.mapper.ProductMapper;
+import in.techcamp.colorchartconnect.service.ProductImageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Base64;
 
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
   private final ProductMapper productMapper;
+
+  @Autowired
+  private ProductImageService imageService;
+
   @GetMapping
   public String showProduct(Model model){
     var productList = productMapper.findAll();
@@ -28,10 +35,26 @@ public class ProductController {
   }
   //データ保存
   @PostMapping("/product")
-  public String saveProduct(ProductEntity entity){
+  public String saveProduct(@ModelAttribute ProductEntity entity, @RequestParam("file") MultipartFile file, Model model) {
+    // 画像ファイルを処理する
+    if (!file.isEmpty()) {
+      // 画像を保存する処理
+      try {
+        ProductEntity saveFile = imageService.store(file);
+        byte[] imageData = saveFile.getData();
+        String image = Base64.getEncoder().encodeToString(imageData);
+        model.addAttribute("image", image);
+      } catch (IOException e) {
+        e.printStackTrace();
+        // エラーハンドリング
+      }
+    }
+
+    // その他のデータ保存処理
     productMapper.insert(entity);
     return "redirect:/";
   }
+
 
   @GetMapping("/product/{product_id}")
   public String productDetail(@PathVariable long product_id, Model model){
