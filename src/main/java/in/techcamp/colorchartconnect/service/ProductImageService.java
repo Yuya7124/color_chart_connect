@@ -18,8 +18,13 @@ public class ProductImageService {
 
   public ProductEntity store(MultipartFile file) throws IOException {
     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-    ProductEntity ProductEntity = new ProductEntity(fileName, file.getContentType(), file.getBytes());
+    ProductEntity productEntity = new ProductEntity(fileName, file.getContentType(), file.getBytes());
 
-    return productMapper.insert(ProductEntity);
+    // データベースに挿入し、生成されたIDを取得
+    productMapper.insert(productEntity);
+
+    // 生成されたIDをセットしてから返す
+    productEntity.setProduct_id(productEntity.getProduct_id());
+    return productEntity;
   }
 }
