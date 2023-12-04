@@ -18,7 +18,7 @@ public class ProductEntity {
   private String type;
 
   @Lob
-  @Type(type = "org.hibernate.type.BinaryType")
+//  @Type(type = "org.hibernate.type.BinaryType")
   @Column(name = "data")
   private byte[] data;
 
