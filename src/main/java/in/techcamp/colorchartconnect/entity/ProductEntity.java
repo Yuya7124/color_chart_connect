@@ -1,5 +1,6 @@
 package in.techcamp.colorchartconnect.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class ProductEntity {
   private String type;
 
   @Lob
+  @Type(type = "org.hibernate.type.BinaryType")
   @Column(name = "data")
   private byte[] data;
 
