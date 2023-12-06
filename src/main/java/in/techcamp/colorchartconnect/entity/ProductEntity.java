@@ -1,6 +1,5 @@
 package in.techcamp.colorchartconnect.entity;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
