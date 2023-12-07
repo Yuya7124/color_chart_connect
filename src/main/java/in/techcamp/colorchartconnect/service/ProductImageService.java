@@ -1,30 +1,45 @@
 package in.techcamp.colorchartconnect.service;
 
 import in.techcamp.colorchartconnect.entity.ProductEntity;
-import in.techcamp.colorchartconnect.mapper.ProductMapper;
+import in.techcamp.colorchartconnect.form.ProductForm;
+import in.techcamp.colorchartconnect.repository.ProductRepository;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.image.ImagingOpException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 
 @Service
 public class ProductImageService {
 
   @Autowired
-  private ProductMapper productMapper;
+  private ProductRepository productRepository;
 
-  public ProductEntity store(MultipartFile file) throws IOException {
-    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-    ProductEntity productEntity = new ProductEntity(fileName, file.getContentType(), file.getBytes());
+  private Mapper mapper;
 
-    // データベースに挿入し、生成されたIDを取得
-    productMapper.insert(productEntity);
+  @Value("${image.folder}")
+  private String imgFolder;
 
-    // 生成されたIDをセットしてから返す
-    productEntity.setProduct_id(productEntity.getProduct_id());
-    return productEntity;
+  @Value("${image.extract}")
+  private String imgExtract;
+
+  @Override
+  public void saveProduct(ProductForm form) throws IOException {
+    if(!form.getProduct_image().isEmpty()){
+      //保存する画像のパス設定
+      var saveFileName = form.getProduct_id() + imgExtract;
+      Path imageFilePath = Path.of(imgFolder, saveFileName);
+
+      //画像ファイル保存
+      Files.copy(form.getProduct_image().getInputStream(), imageFilePath);
+    }
+    //DB更新
+    var productInfo = mapper.map(form, ProductEntity.class);
+    productRepository.insert(productInfo);
+
   }
 }

@@ -2,7 +2,7 @@ package in.techcamp.colorchartconnect.domain.user.service.impl;
 
 import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import in.techcamp.colorchartconnect.domain.user.service.UserService;
-import in.techcamp.colorchartconnect.mapper.UserMapper;
+import in.techcamp.colorchartconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   @Autowired
-  private UserMapper userMapper;
+  private UserRepository userMapper;
 
   //ユーザー登録
   @Override

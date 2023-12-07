@@ -1,4 +1,4 @@
-package in.techcamp.colorchartconnect.entity;
+package in.techcamp.colorchartconnect.form;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 @AllArgsConstructor
 @Data
-public class SignupEntity {
+public class SignupForm {
 
 
   @NotBlank(groups = ValidGroup1.class)

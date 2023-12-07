@@ -1,9 +1,7 @@
 package in.techcamp.colorchartconnect.controller;
 
-import in.techcamp.colorchartconnect.entity.ColorChartEntity;
-import in.techcamp.colorchartconnect.entity.ProductEntity;
-import in.techcamp.colorchartconnect.mapper.ColorChartMapper;
-import in.techcamp.colorchartconnect.mapper.ProductMapper;
+import in.techcamp.colorchartconnect.form.ProductForm;
+import in.techcamp.colorchartconnect.repository.ProductRepository;
 import in.techcamp.colorchartconnect.service.ProductImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import java.util.Base64;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-  private final ProductMapper productMapper;
+  private final ProductRepository productMapper;
 
   @Autowired
   private ProductImageService imageService;
@@ -30,17 +28,17 @@ public class ProductController {
     return "index";
   }
   @GetMapping("/product")
-  public String showProduct(@ModelAttribute("product") ProductEntity entity){
+  public String showProduct(@ModelAttribute("product") ProductForm entity){
     return "product";
   }
   //データ保存
   @PostMapping("/product")
-  public String saveProduct(@ModelAttribute ProductEntity entity, @RequestParam("file") MultipartFile file, Model model) {
+  public String saveProduct(@ModelAttribute ProductForm form, @RequestParam("file") MultipartFile file, Model model) {
     // 画像ファイルを処理する
     if (!file.isEmpty()) {
       // 画像を保存する処理
       try {
-        ProductEntity saveFile = imageService.store(file);
+        ProductForm saveFile = imageService.store(file);
         byte[] imageData = saveFile.getData();
         String image = Base64.getEncoder().encodeToString(imageData);
         model.addAttribute("image", image);
@@ -51,7 +49,7 @@ public class ProductController {
     }
 
     // その他のデータ保存処理
-    productMapper.insert(entity);
+    productMapper.insert(form);
     return "redirect:/";
   }
 
@@ -71,7 +69,7 @@ public class ProductController {
   }
 
   @PostMapping("/product/{product_id}/edit")
-  public String productUpdate(@PathVariable long product_id, ProductEntity entity){
+  public String productUpdate(@PathVariable long product_id, ProductForm entity){
     productMapper.update(product_id, entity.getProduct_name(), entity.getComment(), entity.getType(), entity.getData());
     return "redirect:/product/{product_id}";
   }

@@ -9,8 +9,6 @@ CREATE TABLE IF NOT EXISTS product (
     product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
     product_name VARCHAR(256),
-    type VARCHAR(256),
-    data BLOB,
     comment VARCHAR(1000),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );

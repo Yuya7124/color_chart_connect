@@ -1,11 +1,11 @@
-package in.techcamp.colorchartconnect.entity;
+package in.techcamp.colorchartconnect.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class ColorChartEntity {
+public class ColorChartForm {
   private long product_id;
   private String part;
   private String maker;

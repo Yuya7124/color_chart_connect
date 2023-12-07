@@ -1,20 +1,17 @@
-package in.techcamp.colorchartconnect.entity;
+package in.techcamp.colorchartconnect.form;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "products")
 @Data
-public class ProductEntity {
+public class ProductForm {
   @Id
   private long product_id;
   @NotBlank
   private String product_name;
+  private MultipartFile product_image;
   private String comment;
 }

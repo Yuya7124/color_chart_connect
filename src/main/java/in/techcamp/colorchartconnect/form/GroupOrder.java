@@ -1,4 +1,4 @@
-package in.techcamp.colorchartconnect.entity;
+package in.techcamp.colorchartconnect.form;
 
 import jakarta.validation.GroupSequence;
 
