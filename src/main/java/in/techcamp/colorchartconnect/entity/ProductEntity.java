@@ -1,5 +1,6 @@
 package in.techcamp.colorchartconnect.entity;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,12 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 @Data
 public class ProductEntity {
   @Id
+  @Column(name = "product_id")
   private long product_id;
-  @NotBlank
+  @Column(name = "product_name")
   private String product_name;
+  private MultipartFile product_image;
+  @Column(name = "comment")
   private String comment;
 }
