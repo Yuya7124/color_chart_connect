@@ -80,6 +80,7 @@ public class ProductController {
   @PostMapping("/product/{product_id}/delete")
   public String productDelete(@PathVariable Long product_id){
     productRepository.deleteById(product_id);
+    
     return "redirect:/";
   }
 }
