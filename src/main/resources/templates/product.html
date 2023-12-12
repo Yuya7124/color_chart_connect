@@ -17,6 +17,11 @@
         <input type="file" name="file" id="file">
         <img th:src="${'data:image/png;base64,'+image}" alt="">
       </div>
+      <div class="product_comment_title">Color Chart
+        <textarea id="product-color-chart" class="color_chart"
+                  placeholder="部位、塗料の色(ブランド名)、比率"
+                  th:field="*{color_chart}"></textarea>
+      </div>
       <div class="product_comment_title">Comment
         <textarea id="product-comment" class="my_comment" th:field="*{comment}"></textarea>
       </div>

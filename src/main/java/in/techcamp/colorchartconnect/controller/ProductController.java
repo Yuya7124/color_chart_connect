@@ -50,7 +50,7 @@ public class ProductController {
 //      }
 //    }
 //
-//    // その他のデータ保存処理
+    // その他のデータ保存処理
     model.addAttribute("productForm", form);
     productRepository.insert(form);
     return "redirect:/";

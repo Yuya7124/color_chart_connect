@@ -9,17 +9,18 @@ CREATE TABLE IF NOT EXISTS product (
     product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
     product_name VARCHAR(256),
+    color_chart VARCHAR(1000),
     comment VARCHAR(1000),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
-CREATE TABLE IF NOT EXISTS color_chart (
-    product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    part VARCHAR(256),
-    maker VARCHAR(256),
-    red INT,
-    green INT,
-    blue INT,
-    coat INT,
-    ratio INT
-);
+--CREATE TABLE IF NOT EXISTS color_chart (
+--    product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+--    part VARCHAR(256),
+--    maker VARCHAR(256),
+--    red INT,
+--    green INT,
+--    blue INT,
+--    coat INT,
+--    ratio INT
+--);

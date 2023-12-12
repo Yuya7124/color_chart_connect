@@ -12,6 +12,7 @@
   <h1>詳細ページ</h1>
   <ul>
     <li th:text="${product.getProduct_name()}"></li>
+    <li th:text="${product.getColor_chart}"></li>
     <li th:text="${product.getComment}"></li>
   </ul>
   <a th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>

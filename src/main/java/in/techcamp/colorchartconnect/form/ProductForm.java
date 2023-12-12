@@ -13,5 +13,7 @@ public class ProductForm {
   @NotBlank
   private String product_name;
   private MultipartFile product_image;
+  private String color_chart;
   private String comment;
+
 }

@@ -15,11 +15,11 @@ import java.util.List;
 public interface ProductRepository {
   @Select("select * from product")
   List<ProductEntity> findAll();
-  @Insert("INSERT INTO product(product_name, comment) VALUES (#{product_name}, #{comment})")
+  @Insert("INSERT INTO product(product_name, color_chart, comment) VALUES (#{product_name}, #{color_chart}, #{comment})")
   void insert(ProductForm form);
   @Select("select * from product where product_id = #{product_id}")
   ProductForm findById(long product_id);
-  @Update("UPDATE product SET product_name = #{product_name}, comment = #{comment} WHERE product_id =#{product_id}")
+  @Update("UPDATE product SET product_name = #{product_name}, color_chart = #{color_chart}, comment = #{comment} WHERE product_id =#{product_id}")
   void update(long product_id, String product_name, String comment);
   @Delete("delete from product WHERE product_id = #{product_id}")
   void deleteById(Long product_id);
