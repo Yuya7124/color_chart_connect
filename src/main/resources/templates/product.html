@@ -14,8 +14,8 @@
         <input type="text" id="product-name" class="product" th:field="*{product_name}">
       </div>
       <div class="image">
-        <input type="file" name="file" id="file">
-        <img th:src="${'data:image/png;base64,'+image}" alt="">
+        <input type="file" name="file" id="file" th:field="*{product_image}">
+<!--        <img th:src="${'data:image/png;base64,'+image}" alt="">-->
       </div>
       <div class="product_comment_title">Color Chart
         <textarea id="product-color-chart" class="color_chart"

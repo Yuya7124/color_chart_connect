@@ -18,8 +18,7 @@ public class ProductEntity {
   private long product_id;
   @Column(name = "product_name")
   private String product_name;
-  private MultipartFile product_image;
-
+  private String product_image;
   @Column(name = "color_chart")
   private String color_chart;
   @Column(name = "comment")

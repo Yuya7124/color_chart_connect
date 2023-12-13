@@ -20,9 +20,9 @@ import java.nio.file.Path;
 public class ProductImageServiceImpl implements ProductImageService {
 
   @Autowired
-  private ProductRepository productRepository;
+  private final ProductRepository productRepository;
 
-  private Mapper mapper;
+  private final Mapper mapper;
 
   @Value("${image.folder}")
   private String imgFolder;
@@ -32,7 +32,7 @@ public class ProductImageServiceImpl implements ProductImageService {
 
   @Override
   public void saveProduct(ProductForm form) throws IOException {
-    if(!form.getProduct_image().isEmpty()){
+    if(form != null && form.getProduct_image() != null && !form.getProduct_image().isEmpty()){
       //保存する画像のパス設定
       var saveFileName = form.getProduct_id() + imgExtract;
       Path imageFilePath = Path.of(imgFolder, saveFileName);

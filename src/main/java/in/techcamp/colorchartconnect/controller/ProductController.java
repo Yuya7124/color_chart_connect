@@ -20,8 +20,10 @@ import java.util.Base64;
 public class ProductController {
   private final ProductRepository productRepository;
 
-  @Autowired
   private ProductImageService imageService;
+
+  @Autowired
+  private ProductImageServiceImpl imageServiceImpl;
 
   @GetMapping
   public String showProduct(Model model){
@@ -35,14 +37,14 @@ public class ProductController {
   }
   //データ保存
   @PostMapping("/product")
-  public String saveProduct(@ModelAttribute ProductForm form, Model model) {// @RequestParam("file") MultipartFile file, Model model) {
+  public String saveProduct(@ModelAttribute ProductForm form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
     // 画像ファイルを処理する
 //    if (!file.isEmpty()) {
 //      // 画像を保存する処理
 //      try {
-//        ProductForm saveFile = imageService.store(file);
-//        byte[] imageData = saveFile.getData();
-//        String image = Base64.getEncoder().encodeToString(imageData);
+////        ProductForm saveFile = imageService.store(file);
+////        byte[] imageData = saveFile.getData();
+////        String image = Base64.getEncoder().encodeToString(imageData);
 //        model.addAttribute("image", image);
 //      } catch (IOException e) {
 //        e.printStackTrace();
@@ -51,7 +53,9 @@ public class ProductController {
 //    }
 //
     // その他のデータ保存処理
+    var imageup = imageService.saveProduct(form);
     model.addAttribute("productForm", form);
+    model.addAttribute("productImage", form);
     productRepository.insert(form);
     return "redirect:/";
   }

@@ -11,18 +11,22 @@
 <!-- contents -->
 カラーガイド一覧
 <a th:href="@{/product}">新規投稿画面</a>
-<ul th:each="product:${productList}">
-    <li>
-        <div class="image_data">
-            <!-- productFormがnullでない場合にのみ表示する -->
-            <th:block th:if="${productForm != null}">
-                <!-- product_imageにアクセス -->
-                <img th:src="${productForm.product_image}" alt="Product Image">
-            </th:block>
-        </div>
-        <a th:text="${product.getProduct_name()}"
-           th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
-    </li>
-</ul>
+<form id="productForm" method="post" class="product_form" th:object="${product}">
+    <ul th:each="product:${productList}">
+        <li>
+            <div class="image_data">
+                <!-- productFormがnullでない場合にのみ表示する -->
+                <!--            <th:block th:if="${productForm != null}">-->
+                <!--                &lt;!&ndash; product_imageにアクセス &ndash;&gt;-->
+                <!--                <img th:src="${productForm.product_image}" alt="Product Image">-->
+                <!--            </th:block>-->
+                <img id="product_imageFile" th:src="${productEntity}">
+            </div>
+            <a th:text="${product.getProduct_name()}"
+               th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
+        </li>
+    </ul>
+</form>
+
 </body>
 </html>
