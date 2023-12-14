@@ -20,7 +20,7 @@
                 <!--                &lt;!&ndash; product_imageにアクセス &ndash;&gt;-->
                 <!--                <img th:src="${productForm.product_image}" alt="Product Image">-->
                 <!--            </th:block>-->
-                <img id="product_imageFile" th:src="${productEntity}">
+                <img id="productImage" th:src="${product_image}">
             </div>
             <a th:text="${product.getProduct_name()}"
                th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>

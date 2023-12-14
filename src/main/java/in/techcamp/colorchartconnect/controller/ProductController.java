@@ -7,12 +7,15 @@ import in.techcamp.colorchartconnect.service.ProductImageService;
 import in.techcamp.colorchartconnect.service.ProductImageServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Base64;
 
 @Controller
@@ -24,6 +27,12 @@ public class ProductController {
 
   @Autowired
   private ProductImageServiceImpl imageServiceImpl;
+
+  @Value("${image.folder}")
+  private String imgFolder;
+
+  @Value("${image.extract}")
+  private String imgExtract;
 
   @GetMapping
   public String showProduct(Model model){
@@ -37,29 +46,13 @@ public class ProductController {
   }
   //データ保存
   @PostMapping("/product")
-  public String saveProduct(@ModelAttribute ProductForm form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
-    // 画像ファイルを処理する
-//    if (!file.isEmpty()) {
-//      // 画像を保存する処理
-//      try {
-////        ProductForm saveFile = imageService.store(file);
-////        byte[] imageData = saveFile.getData();
-////        String image = Base64.getEncoder().encodeToString(imageData);
-//        model.addAttribute("image", image);
-//      } catch (IOException e) {
-//        e.printStackTrace();
-//        // エラーハンドリング
-//      }
-//    }
-//
+  public String saveProduct(@ModelAttribute ProductForm form, Model model) throws IOException {
     // その他のデータ保存処理
-    var imageup = imageService.saveProduct(form);
+    imageService.saveProduct(form);
     model.addAttribute("productForm", form);
-    model.addAttribute("productImage", form);
     productRepository.insert(form);
     return "redirect:/";
   }
-
 
   @GetMapping("/product/{product_id}")
   public String productDetail(@PathVariable long product_id, Model model){

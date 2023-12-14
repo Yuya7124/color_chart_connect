@@ -1,8 +1,6 @@
 package in.techcamp.colorchartconnect.service;
 
-import in.techcamp.colorchartconnect.entity.ProductEntity;
 import in.techcamp.colorchartconnect.form.ProductForm;
-import in.techcamp.colorchartconnect.service.ProductImageService;
 import in.techcamp.colorchartconnect.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.dozer.Mapper;
@@ -31,7 +29,7 @@ public class ProductImageServiceImpl implements ProductImageService {
   private String imgExtract;
 
   @Override
-  public void saveProduct(ProductForm form) throws IOException {
+  public ProductImageServiceImpl saveProduct(ProductForm form) throws IOException {
     if(form != null && form.getProduct_image() != null && !form.getProduct_image().isEmpty()){
       //保存する画像のパス設定
       var saveFileName = form.getProduct_id() + imgExtract;
@@ -44,5 +42,6 @@ public class ProductImageServiceImpl implements ProductImageService {
     var productInfo = mapper.map(form, ProductForm.class);
     productRepository.insert(productInfo);
 
+    return null;
   }
 }
