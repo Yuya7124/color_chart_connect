@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface ProductImageService {
 
-  public ProductImageServiceImpl saveProduct(ProductForm form) throws IOException;
+  public void saveProduct(ProductForm form) throws IOException;
 }

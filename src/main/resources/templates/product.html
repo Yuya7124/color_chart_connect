@@ -15,9 +15,9 @@
       </div>
       <div class="image">
         <input type="file" name="file" id="file" th:field="*{product_image}">
-<!--        <img th:src="${'data:image/png;base64,'+image}" alt="">-->
       </div>
-      <div class="product_comment_title">Color Chart
+      <div class="product_comment_title">Color Chart<br>
+        例）部位、塗料の色(ブランド名)、比率<br>
         <textarea id="product-color-chart" class="color_chart"
                   placeholder="部位、塗料の色(ブランド名)、比率"
                   th:field="*{color_chart}"></textarea>

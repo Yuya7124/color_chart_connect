@@ -48,6 +48,21 @@ public class ProductController {
   @PostMapping("/product")
   public String saveProduct(@ModelAttribute ProductForm form, Model model) throws IOException {
     // その他のデータ保存処理
+//    String message = "";
+//    try {
+//      ProductEntity savedFile = ProductImageServiceImpl.store(file);
+//      byte[] bytes = savedFile.getData();
+//      // ポイント4: Base64.getEncoder().encodeToString(bytes)でbyteをStringにして、Viewに渡す
+//      String image =  Base64.getEncoder().encodeToString(bytes);
+//      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+//      model.addAttribute("message", message);
+//      model.addAttribute("image", image);
+//      return "file_upload";
+//    } catch (Exception e) {
+//      message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+//      model.addAttribute("message", message);
+//      return "file_upload";
+//    }
     imageService.saveProduct(form);
     model.addAttribute("productForm", form);
     productRepository.insert(form);
@@ -69,8 +84,8 @@ public class ProductController {
   }
 
   @PostMapping("/product/{product_id}/edit")
-  public String productUpdate(@PathVariable long product_id, ProductEntity entity){
-    productRepository.update(product_id, entity.getProduct_name(), entity.getComment());
+  public String productUpdate(@PathVariable long product_id, ProductForm form){
+    productRepository.update(product_id, form.getProduct_name(), form.getComment());
     return "redirect:/product/{product_id}";
   }
 

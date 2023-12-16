@@ -12,7 +12,7 @@ public class ProductForm {
   private long product_id;
   @NotBlank
   private String product_name;
-  private MultipartFile product_image;
+  private MultipartFile data;
   private String color_chart;
   private String comment;
 

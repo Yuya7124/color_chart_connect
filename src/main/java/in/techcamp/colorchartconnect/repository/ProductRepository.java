@@ -7,12 +7,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.Delete;
+import org.springframework.stereotype.Repository;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 @Mapper
-public interface ProductRepository {
+@Repository
+public interface ProductRepository extends JpaRepository<ProductEntity, String>{
   @Select("select * from product")
   List<ProductEntity> findAll();
   @Insert("INSERT INTO product(product_name, color_chart, comment) VALUES (#{product_name}, #{color_chart}, #{comment})")

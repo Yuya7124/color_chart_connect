@@ -11,7 +11,7 @@
 <!-- contents -->
 カラーガイド一覧
 <a th:href="@{/product}">新規投稿画面</a>
-<form id="productForm" method="post" class="product_form" th:object="${product}">
+<form id="productForm" method="post" class="product_form" th:object="${product}" enctype="multipart/form-data">
     <ul th:each="product:${productList}">
         <li>
             <div class="image_data">
@@ -20,7 +20,10 @@
                 <!--                &lt;!&ndash; product_imageにアクセス &ndash;&gt;-->
                 <!--                <img th:src="${productForm.product_image}" alt="Product Image">-->
                 <!--            </th:block>-->
-                <img id="productImage" th:src="${product_image}">
+
+<!--                <img id="productImage" th:src="${productResult.product_image}">-->
+                <p th:text="${message}"></p>
+                <img th:src="${'data:image/png;base64,'+image}" alt="">
             </div>
             <a th:text="${product.getProduct_name()}"
                th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
