@@ -8,8 +8,6 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,16 +31,16 @@ public class ProductImageServiceImpl implements ProductImageService {
 
   @Override
   public void saveProduct(ProductForm form) throws IOException {
-    if(form != null && form.getData() != null && !form.getData().isEmpty()){
+    if(form != null && form.getProduct_image() != null && !form.getProduct_image().isEmpty()){
       //保存する画像のパス設定
       var saveFileName = form.getProduct_id() + imgExtract;
       Path imageFilePath = Path.of(imgFolder, saveFileName);
 
       //画像ファイル保存
-      Files.copy(form.getData().getInputStream(), imageFilePath);
+      Files.copy(form.getProduct_image().getInputStream(), imageFilePath);
     }
     //DB更新
-    var productInfo = mapper.map(form, ProductEntity.class);
-    productRepository.save(productInfo);
+    var productInfo = mapper.map(form, ProductForm.class);
+    productRepository.insert(productInfo);
   }
 }

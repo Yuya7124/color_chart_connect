@@ -23,10 +23,7 @@ import java.util.Base64;
 public class ProductController {
   private final ProductRepository productRepository;
 
-  private ProductImageService imageService;
-
-  @Autowired
-  private ProductImageServiceImpl imageServiceImpl;
+  private final ProductImageService imageService;
 
   @Value("${image.folder}")
   private String imgFolder;
@@ -35,13 +32,13 @@ public class ProductController {
   private String imgExtract;
 
   @GetMapping
-  public String showProduct(Model model){
+  public String showProducts(Model model){
     var productList = productRepository.findAll();
     model.addAttribute("productList", productList);
     return "index";
   }
   @GetMapping("/product")
-  public String showProduct(@ModelAttribute("product") ProductForm form){
+  public String showProductForm(@ModelAttribute("product") ProductForm form){
     return "product";
   }
   //データ保存
