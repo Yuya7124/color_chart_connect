@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,6 +36,7 @@ public class ProductImageServiceImpl implements ProductImageService {
     if(form != null && form.getProduct_image() != null && !form.getProduct_image().isEmpty()){
       //保存する画像のパス設定
       var saveFileName = form.getProduct_id() + imgExtract;
+      File file = new File(imgFolder);
       Path imageFilePath = Path.of(imgFolder, saveFileName);
 
       //画像ファイル保存
