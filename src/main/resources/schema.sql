@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS product (
     user_id BIGINT,
     product_name VARCHAR(256),
     color_chart VARCHAR(1000),
+    image_data LONGBLOB,
+    image_filename VARCHAR(256),
     comment VARCHAR(1000),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );

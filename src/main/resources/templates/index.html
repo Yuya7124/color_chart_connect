@@ -9,7 +9,7 @@
 <!-- Header -->
 <nav layout:replace="~{layout/header::header}"></nav>
 <!-- contents -->
-カラーガイド一覧
+投稿一覧
 <a th:href="@{/product}">新規投稿画面</a>
 <form id="productForm" method="post" class="product_form" th:object="${product}" enctype="multipart/form-data">
     <ul th:each="product:${productList}">
@@ -24,6 +24,7 @@
 <!--                <img id="productImage" th:src="${productResult.product_image}">-->
                 <p th:text="${message}"></p>
                 <img th:src="${'data:image/png;base64,'+image}" alt="">
+                <img th:src="@{/images/{product_image}(product_image=${product_image})}" alt="Uploaded Image"/>
             </div>
             <a th:text="${product.getProduct_name()}"
                th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
