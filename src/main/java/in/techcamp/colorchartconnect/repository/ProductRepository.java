@@ -12,14 +12,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Mapper
+
 @Repository
 public interface ProductRepository {
   @Select("select * from product")
   List<ProductEntity> findAll();
-  @Insert("INSERT INTO product(product_name, color_chart, comment) VALUES (#{product_name}, #{color_chart}, #{comment})")
-  ProductForm insert_text(String product_name, String color_chart, String comment);
-  @Insert("INSERT INTO product(image_data, image_filename) VALUES (#{image_data}, #{image_filename})")
-  ProductForm insert_image(byte[] image_data, String image_filename);
+  @Insert("INSERT INTO product (product_name, color_chart, image_data, image_filename, comment) VALUES (#{product_name}, #{color_chart}, #{image_data}, #{image_filename}, #{comment})")
+  void insert(String product_name, String color_chart, byte[] image_data, String image_filename, String comment);
   @Select("select * from product where product_id = #{product_id}")
   ProductEntity findById(long product_id);
   @Update("UPDATE product SET product_name = #{product_name}, color_chart = #{color_chart}, image_data = #{image_data}, image_filename = #{image_filename} ,comment = #{comment} WHERE product_id =#{product_id}")

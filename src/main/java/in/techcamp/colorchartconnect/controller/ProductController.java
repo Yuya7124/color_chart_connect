@@ -42,6 +42,16 @@ public class ProductController {
     model.addAttribute("productList", productList);
     return "index";
   }
+
+  @PostMapping
+  public String showProducts(@ModelAttribute ProductForm form, Model model) {
+    //    model.addAttribute("message", message);
+    byte[] bytes = form.getImage_data();
+    String image = Base64.getEncoder().encodeToString(bytes);
+    model.addAttribute("image", image);
+    return "index";
+  }
+
   @GetMapping("/product")
   public String showProductForm(@ModelAttribute("product") ProductForm form){
     return "product";
@@ -58,8 +68,7 @@ public class ProductController {
       // 保存するProductEntityの作成
       form.setImage_filename(fileName);
       form.setImage_data(imageData);
-      ProductForm savefile = imageService.store(file);
-      byte[] bytes = savefile.getImage_data();
+      byte[] bytes = form.getImage_data();
       String image = Base64.getEncoder().encodeToString(bytes);
       message = "Uploaded the file successfully: " + file.getOriginalFilename();
       model.addAttribute("message", message);
@@ -69,7 +78,7 @@ public class ProductController {
       model.addAttribute("message", message);
     }
     model.addAttribute("productForm", form);
-    productRepository.insert_text(form.getProduct_name(), form.getColor_chart(), form.getComment());
+    productRepository.insert(form.getProduct_name(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
     return "redirect:/";
   }
 

@@ -58,15 +58,13 @@ public class ProductImageServiceImpl { //implements ProductImageService {
 //    return name;
 //  }
 
-  public ProductForm store(MultipartFile file) throws IOException {
+  public void store(MultipartFile file) throws IOException {
     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     // 画像データの取得
     byte[] imageData = file.getBytes();
-
     // 保存するProductEntityの作成
     ProductForm form = new ProductForm();
     form.setImage_filename(fileName);
     form.setImage_data(imageData);
-    return productRepository.insert_image(form.getImage_data() ,form.getImage_filename());
   }
 }

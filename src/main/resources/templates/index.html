@@ -15,16 +15,7 @@
     <ul th:each="product:${productList}">
         <li>
             <div class="image_data">
-                <!-- productFormがnullでない場合にのみ表示する -->
-                <!--            <th:block th:if="${productForm != null}">-->
-                <!--                &lt;!&ndash; product_imageにアクセス &ndash;&gt;-->
-                <!--                <img th:src="${productForm.product_image}" alt="Product Image">-->
-                <!--            </th:block>-->
-
-<!--                <img id="productImage" th:src="${productResult.product_image}">-->
-                <p th:text="${message}"></p>
-                <img th:src="${'data:image/png;base64,'+image}" alt="">
-                <img th:src="@{/images/{product_image}(product_image=${product_image})}" alt="Uploaded Image"/>
+                <img th:src="${'data:image/png;base64,' +product.image_data}" th:alt="${product.image_filename}">
             </div>
             <a th:text="${product.getProduct_name()}"
                th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
