@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <link rel="stylesheet" th:href="@{css/index.css}">
     <meta charset="UTF-8">
     <title>Color Chart Connect</title>
 </head>
@@ -15,7 +16,7 @@
     <ul th:each="product:${productList}">
         <li>
             <div class="image_data">
-                <img th:src="${'data:image/png;base64,' +product.image_data}" th:alt="${product.image_filename}">
+                <img class="imgfile" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
             </div>
             <a th:text="${product.getProduct_name()}"
                th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>

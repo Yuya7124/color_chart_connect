@@ -11,6 +11,9 @@
   <!-- contents -->
   <h1>詳細ページ</h1>
   <ul>
+    <div class="image_data">
+      <img th:src="${'data:image/png;base64,' +product.encodedImageData}" th:alt="${product.image_filename}">
+    </div>
     <li th:text="${product.getProduct_name()}"></li>
     <li th:text="${product.getColor_chart}"></li>
     <li th:text="${product.getComment}"></li>

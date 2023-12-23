@@ -22,5 +22,7 @@ public class ProductEntity {
   private String image_filename;
   @Column(name = "comment")
   private String comment;
+
+  private String encodedImageData;
 }
 
