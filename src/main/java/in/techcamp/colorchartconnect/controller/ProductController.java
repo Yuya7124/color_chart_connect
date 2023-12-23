@@ -33,18 +33,6 @@ public class ProductController {
 
   private static final String UPLOAD_DIR = "uploads";
 
-  // 画像ファイル圧縮
-  private byte[] compressImage(byte[] originalImageData, int targetWidth, int targetHeight) throws IOException {
-    try (ByteArrayInputStream inputStream = new ByteArrayInputStream(originalImageData);
-         ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-      Thumbnails.of(inputStream)
-              .size(targetWidth, targetHeight)
-              .outputFormat("png") // 出力フォーマットを選択
-              .toOutputStream(outputStream);
-      return outputStream.toByteArray();
-    }
-  }
-
   @Value("${image.folder}")
   private String imgFolder;
 
@@ -85,14 +73,10 @@ public class ProductController {
       String fileName = StringUtils.cleanPath(file.getOriginalFilename());
       // 画像データの取得
       byte[] imageData = file.getBytes();
-      int targetWidth = 250; // 適切な幅を指定
-      int targetHeight = 187; // 適切な高さを指定
-      byte[] compressedImageData = compressImage(imageData, targetWidth, targetHeight);
-      String image = Base64.getEncoder().encodeToString(compressedImageData);
 
       // 保存するProductEntityの作成
       form.setImage_filename(fileName);
-      form.setImage_data(compressedImageData);
+      form.setImage_data(imageData);
 
     } catch (Exception e) {
 
