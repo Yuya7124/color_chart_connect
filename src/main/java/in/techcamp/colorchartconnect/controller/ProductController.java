@@ -33,6 +33,7 @@ public class ProductController {
 
   private static final String UPLOAD_DIR = "uploads";
 
+  // 画像ファイル圧縮
   private byte[] compressImage(byte[] originalImageData, int targetWidth, int targetHeight) throws IOException {
     try (ByteArrayInputStream inputStream = new ByteArrayInputStream(originalImageData);
          ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
@@ -107,7 +108,7 @@ public class ProductController {
     try {
       // Base64エンコードされた画像データをセット
       byte[] imageData = product.getImage_data();
-      String image = Base64.getEncoder().encodeToString(imageData);
+      String image = "data:image/png;base64," + Base64.getEncoder().encodeToString(imageData);
       product.setEncodedImageData(image);
       model.addAttribute("image", image);
     } catch (Exception e) {
