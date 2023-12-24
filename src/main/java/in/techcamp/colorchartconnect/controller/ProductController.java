@@ -1,13 +1,9 @@
 package in.techcamp.colorchartconnect.controller;
 
-import in.techcamp.colorchartconnect.entity.ProductEntity;
 import in.techcamp.colorchartconnect.form.ProductForm;
 import in.techcamp.colorchartconnect.repository.ProductRepository;
-import in.techcamp.colorchartconnect.service.ProductImageService;
 import in.techcamp.colorchartconnect.service.ProductImageServiceImpl;
 import lombok.RequiredArgsConstructor;
-import net.coobird.thumbnailator.Thumbnails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +11,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.Base64;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
