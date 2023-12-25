@@ -19,18 +19,21 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     //ログイン時
     http.formLogin(login -> login
-            .loginProcessingUrl("/login")
-            .loginPage("/login")
-            .defaultSuccessUrl("/")
-            .failureUrl("/login?error")
-            .permitAll()
+                    .loginProcessingUrl("/login")
+                    .loginPage("/login")
+                    .usernameParameter("userId")
+                    .passwordParameter("password")
+                    .failureUrl("/login?error")
+                    .defaultSuccessUrl("/")
+                    .permitAll()
             //ログアウト時
     ).logout(logout -> logout
-            .logoutSuccessUrl("/")
+                    .logoutSuccessUrl("/")
             //ログイン不要部分
     ).authorizeHttpRequests(authz -> authz
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
             .requestMatchers("/").permitAll()
+            .requestMatchers("/user/signup").permitAll()
             .requestMatchers("/general").hasRole("GENERAL")
             .requestMatchers("/admin").hasRole("ADMIN")
             .anyRequest().authenticated()
