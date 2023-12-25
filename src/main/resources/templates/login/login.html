@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">-->
+<!--    <script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>-->
+<!--    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>-->
     <meta charset="UTF-8">
     <title>ログイン</title>
 </head>
@@ -10,11 +13,11 @@
         <h2 class="form-signin-heading">Login</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username">
         </p>
         <p>
             <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
         </p>
         <input name="_csrf" type="hidden" value="iDvpuYyK8s4tYxFssyTjLu5IJtA4pPG6XeyBOLil2xrzBAovu12Ijunrlv8AASRchgnXTNssC7EPnMiXb9zlC4uXuiOVNTod">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

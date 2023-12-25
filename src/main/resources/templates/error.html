@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+ <h1>ERROR </h1>
+ <h2 th:text="${status} + ' ' + ${error}"></h2>
+ <p th:text="${message}"></p>
+ <p>メイン画面に戻ってください</p>
+ <form method="post" th:action="@{/}">
+   <button class="btn_link" type="submit">メイン画面へ</button>
+ </form>
+</body>
+</html>
