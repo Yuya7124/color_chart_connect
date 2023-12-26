@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserRepository {
   //ユーザー登録
   public int insertOne(MUser user);
+
+  public MUser findLoginUser(String userId);
 }

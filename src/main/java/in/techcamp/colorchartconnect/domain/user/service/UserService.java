@@ -7,4 +7,5 @@ public interface UserService {
   //ユーザー登録
   public void signup(MUser user);
 
+  public MUser getLoginUser(String userId);
 }

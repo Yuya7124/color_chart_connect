@@ -1,22 +1,16 @@
 package in.techcamp.colorchartconnect.service;
 
-import in.techcamp.colorchartconnect.entity.ProductEntity;
 import in.techcamp.colorchartconnect.form.ProductForm;
-import in.techcamp.colorchartconnect.repository.ProductImageRepository;
 import in.techcamp.colorchartconnect.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 
 @Service
