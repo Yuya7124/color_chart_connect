@@ -1,12 +1,14 @@
 package in.techcamp.colorchartconnect.controller;
 
-import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import in.techcamp.colorchartconnect.domain.user.service.UserService;
+import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.GroupOrder;
 import in.techcamp.colorchartconnect.form.SignupForm;
+import in.techcamp.colorchartconnect.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,14 +25,20 @@ import java.util.Locale;
 @Slf4j
 public class SignupController {
 
+  private UserRepository userRepository;
+
   @Autowired
   private UserService userService;
 
   @Autowired
+  private PasswordEncoder passwordEncoder;
+
+  @Autowired
   private ModelMapper modelMapper;
 
+
   @GetMapping("/signup")
-  public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm entity){
+  public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm form){
     //ユーザー登録画面に遷移
     return "user/signup";
   }
@@ -48,10 +56,14 @@ public class SignupController {
     log.info(form.toString());
 
     //entity → MUser
-    MUser user = modelMapper.map(form, MUser.class);
+    //UserEntity user = modelMapper.map(form, UserEntity.class);
+
+    String rawPassword = form.getPassword();
+    form.setPassword(passwordEncoder.encode(rawPassword));
 
     //ユーザー登録
-    userService.signup(user);
+    //userService.signup(user);
+    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword());
 
     //メイン画面へ遷移
     return "redirect:/";

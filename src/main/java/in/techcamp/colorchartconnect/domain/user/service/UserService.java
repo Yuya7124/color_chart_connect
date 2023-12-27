@@ -1,11 +1,11 @@
 package in.techcamp.colorchartconnect.domain.user.service;
 
-import in.techcamp.colorchartconnect.domain.user.model.MUser;
+import in.techcamp.colorchartconnect.entity.UserEntity;
 
 public interface UserService {
 
   //ユーザー登録
-  public void signup(MUser user);
+  public void signup(UserEntity entity);
 
-  public MUser getLoginUser(String userId);
+  public UserEntity getLoginUser(String userId);
 }

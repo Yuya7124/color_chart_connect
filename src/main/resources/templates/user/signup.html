@@ -8,17 +8,17 @@
 <form id="signup-form" method="post" action="/user/signup" class="form_signup" th:object="${signupForm}">
     <h1 class="siginup_title">User Registration</h1>
     <div class="nickname_group">
-        <label class="nickname_label">ニックネーム</label>
+        <label class="nickname_label" th:text="#{nickname}">ニックネーム</label>
         <input type="text" class="nickname_form" th:field="*{nickname}" th:errorclass="is-invalid">
         <div class="invalid_feedback" th:errors="*{nickname}"></div>
     </div>
     <div class="email_group">
-        <label class="email_label">メールアドレス</label>
+        <label class="email_label" th:text="#{email}">メールアドレス</label>
         <input type="text" class="email_form" th:field="*{email}" th:errorclass="is-invalid">
         <div class="invalid_feedback" th:errors="*{email}"></div>
     </div>
     <div class="password_group">
-        <label class="password_label">パスワード</label>
+        <label class="password_label" th:text="#{password}">パスワード</label>
         <input type="password" class="password_form" th:field="*{password}" th:errorclass="is-invalid">
         <div class="invalid_feedback" th:errors="*{password}"></div>
     </div>
