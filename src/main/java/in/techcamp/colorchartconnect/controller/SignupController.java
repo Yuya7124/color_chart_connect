@@ -63,9 +63,9 @@ public class SignupController {
 
     //ユーザー登録
     //userService.signup(user);
-    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword());
+    userRepository.insertOne(form.getNickname(), form.getEmail(), rawPassword);
 
     //メイン画面へ遷移
-    return "redirect:/";
+    return "redirect:/login";
   }
 }

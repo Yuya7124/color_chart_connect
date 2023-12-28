@@ -2,10 +2,6 @@ package in.techcamp.colorchartconnect.form;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.NonNull;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Data

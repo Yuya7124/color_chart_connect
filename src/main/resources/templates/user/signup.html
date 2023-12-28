@@ -5,7 +5,7 @@
     <title>新規登録</title>
 </head>
 <body>
-<form id="signup-form" method="post" action="/user/signup" class="form_signup" th:object="${signupForm}">
+<form id="signup-form" th:method="post" th:action=@{"/user/signup"} class="form_signup" th:object="${signupForm}">
     <h1 class="siginup_title">User Registration</h1>
     <div class="nickname_group">
         <label class="nickname_label" th:text="#{nickname}">ニックネーム</label>
@@ -22,6 +22,12 @@
         <input type="password" class="password_form" th:field="*{password}" th:errorclass="is-invalid">
         <div class="invalid_feedback" th:errors="*{password}"></div>
     </div>
+    <div class="password_group">
+        <label class="password_label" th:text="#{confirm_password}">パスワード</label>
+        <input type="password" class="password_form" th:field="*{confirm_password}" th:errorclass="is-invalid">
+        <div class="invalid_feedback" th:errors="*{confirm_password}"></div>
+    </div>
+
     <input type="submit" th:value="登録" class="signup_btn">
 </form>
 </body>

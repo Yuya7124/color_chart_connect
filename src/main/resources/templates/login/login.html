@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" th:action="@{/login}">
+    <form class="form-signin" th:method="post" th:action="@{/login}">
         <h2 class="form-signin-heading">Login</h2>
 <!--        <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']}!=null"-->
 <!--           th:text="${session['SPRING_SECURITY_LAST_EXCEPTION']}.message"-->
