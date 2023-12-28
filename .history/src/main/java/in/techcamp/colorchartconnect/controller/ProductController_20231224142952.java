@@ -2,6 +2,7 @@ package in.techcamp.colorchartconnect.controller;
 
 import in.techcamp.colorchartconnect.form.ProductForm;
 import in.techcamp.colorchartconnect.repository.ProductRepository;
+import in.techcamp.colorchartconnect.service.ProductImageServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,10 @@ import java.util.Base64;
 @RequiredArgsConstructor
 public class ProductController {
   private final ProductRepository productRepository;
+
+  private final ProductImageServiceImpl imageService;
+
+  private static final String UPLOAD_DIR = "uploads";
 
   @Value("${image.folder}")
   private String imgFolder;
@@ -53,6 +58,7 @@ public class ProductController {
 
   @PostMapping("/product")
   public String saveProduct(@ModelAttribute ProductForm form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
+    String message = "";
     try {
       String fileName = StringUtils.cleanPath(file.getOriginalFilename());
       // 画像データの取得

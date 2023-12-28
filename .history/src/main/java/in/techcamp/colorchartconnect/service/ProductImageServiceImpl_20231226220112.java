@@ -1,7 +1,10 @@
 package in.techcamp.colorchartconnect.service;
 
 import in.techcamp.colorchartconnect.form.ProductForm;
+import in.techcamp.colorchartconnect.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,6 +16,11 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class ProductImageServiceImpl { //implements ProductImageService {
+
+  @Autowired
+  private final ProductRepository productRepository;
+
+  private final Mapper mapper;
 
   @Value("${image.folder}")
   private String imgFolder;

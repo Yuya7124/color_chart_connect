@@ -22,7 +22,7 @@
         <textarea id="product-comment" class="my_comment" th:field="*{comment}"></textarea>
     </div>
     <button type="submit">更新</button>
-    <a th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}">戻る</a>
+    <a class="back_btn" th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}">戻る</a>
 </form>
 </body>
 </html>

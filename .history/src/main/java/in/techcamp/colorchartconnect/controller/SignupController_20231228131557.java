@@ -1,9 +1,12 @@
 package in.techcamp.colorchartconnect.controller;
 
+import in.techcamp.colorchartconnect.domain.user.service.UserService;
+import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.GroupOrder;
 import in.techcamp.colorchartconnect.form.SignupForm;
 import in.techcamp.colorchartconnect.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,7 +28,14 @@ public class SignupController {
   private UserRepository userRepository;
 
   @Autowired
+  private UserService userService;
+
+  @Autowired
   private PasswordEncoder passwordEncoder;
+
+  @Autowired
+  private ModelMapper modelMapper;
+
 
   @GetMapping("/signup")
   public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm form){

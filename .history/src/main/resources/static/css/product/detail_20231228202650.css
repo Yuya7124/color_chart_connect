@@ -4,12 +4,12 @@
 
 .info {
 margin: 0 auto;
-  width: 800px;
+  width: 500px;
 }
 
 .img_file_detail {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
 }
 
 .image_data {

@@ -11,18 +11,29 @@
   <nav layout:replace="~{layout/header::header}"></nav>
   <!-- contents -->
   <h1 class="title_name">詳細ページ</h1>
-  <ul>
+  <div class="info">
     <div class="image_data">
-      <img class="imgfile_detail" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
+      <img class="img_file_detail" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
     </div>
-    <li th:text="${product.getProduct_name()}"></li>
-    <li th:text="${product.getColor_chart}"></li>
-    <li th:text="${product.getComment}"></li>
-  </ul>
-  <a th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
-  <form method="post" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
-    <button type="submit">削除</button>
-    <a href="/">戻る</a>
-  </form>
+    <div class="product_info">
+      <label class="info_label">作品名：</label>
+      <div th:text="${product.getProduct_name()}"></div>
+    </div>
+    <div class="product_info">
+      <label class="info_label">作品名：</label>
+      <div th:text="${product.getColor_chart}"></div>
+    </div>
+    <div class="product_info">
+      <label class="info_label">作品名：</label>
+      <div th:text="${product.getComment}"></div>
+    </div>
+  </div>
+  <div class="edit_menu">
+    <a th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
+    <form method="post" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
+      <button type="submit" class="delete_btn">削除</button>
+    </form>
+  </div>
+  <a class="back_btn" href="/">戻る</a>
 </body>
 </html>
