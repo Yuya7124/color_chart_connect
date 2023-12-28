@@ -1,0 +1,13 @@
+.title_name {
+  text-align: center;
+}
+
+.header_menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgfile {
+  width: 20%;
+  height: 20%;
+}

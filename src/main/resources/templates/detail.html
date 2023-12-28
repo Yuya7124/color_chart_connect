@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <link rel="stylesheet" th:href="@{/css/detail.css}">
+  <link rel="stylesheet" th:href="@{/css/product/detail.css}">
   <meta charset="UTF-8">
   <title>Color Chart Connect</title>
 </head>
@@ -10,7 +10,7 @@
   <!-- Header -->
   <nav layout:replace="~{layout/header::header}"></nav>
   <!-- contents -->
-  <h1>詳細ページ</h1>
+  <h1 class="title_name">詳細ページ</h1>
   <ul>
     <div class="image_data">
       <img class="imgfile_detail" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">

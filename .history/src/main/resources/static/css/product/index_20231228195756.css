@@ -1,0 +1,22 @@
+.title_name {
+  text-align: center;
+}
+
+.header_menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img_file {
+  width: 20%;
+  height: 20%;
+}
+
+.product_form {
+  display: flex;
+  justify-content: space-around;
+}
+
+.image_name {
+  display: flex;
+}

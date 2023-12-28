@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <link rel="stylesheet" th:href="@{/css/product/edit.css}">
     <meta charset="UTF-8">
     <title>編集画面</title>
 </head>
 <body>
 <!-- Header -->
 <nav layout:replace="~{layout/header::header}"></nav>
-<h1>投稿編集ページ</h1>
+<h1 class="title_name">投稿編集ページ</h1>
 <form action="#" th:action="@{/product/{Product_id}/edit(Product_id=${product.getProduct_id()})}" th:method="post" th:object="${product}">
     <div class="product_name_title">Product Name
         <input type="text" id="product-name" class="product" th:field="*{product_name}">

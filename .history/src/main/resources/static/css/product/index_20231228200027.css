@@ -1,0 +1,24 @@
+.title_name {
+  text-align: center;
+}
+
+.header_menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img_file {
+  width: 20%;
+  height: 20%;
+}
+
+.product_form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: calc((100% - 50px) / 3);
+}
+
+.image_name {
+  display: flex;
+}

@@ -2,26 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/product/index.css}">
     <meta charset="UTF-8">
     <title>Color Chart Connect</title>
 </head>
 <body>
 <!-- Header -->
-<nav layout:replace="~{layout/header::header}"></nav>
+<div class="header_menu">
+    <nav layout:replace="~{layout/header::header}"></nav>
+    <a th:href="@{/product}">新規投稿画面</a>
+</div>
 <!-- contents -->
-投稿一覧
-<a th:href="@{/product}">新規投稿画面</a>
+<h1 class="title_name">投稿一覧</h1>
+
 <form id="productForm" method="post" class="product_form" th:object="${product}" enctype="multipart/form-data">
-    <ul th:each="product:${productList}">
-        <li>
+    <div class="product_list" th:each="product:${productList}">
+        <div class="product_data">
             <div class="image_data">
-                <img class="imgfile" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
+                <img class="img_file" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
             </div>
-            <a th:text="${product.getProduct_name()}"
-               th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
-        </li>
-    </ul>
+            <div class="product_name">
+                <label>作品名:　</label>
+                <a class="image_name" th:text="${product.getProduct_name()}"
+                   th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
+            </div>
+        </div>
+    </div>
 </form>
 
 </body>
