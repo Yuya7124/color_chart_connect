@@ -76,9 +76,9 @@ public class ProductController {
     try {
       // Base64エンコードされた画像データをセット
       byte[] imageData = product.getImage_data();
-      String image = "data:image/png;base64," + Base64.getEncoder().encodeToString(imageData);
-      product.setEncodedImageData(image);
-      model.addAttribute("image", image);
+//      String image = "data:image/png;base64," + Base64.getEncoder().encodeToString(imageData);
+//      product.setEncodedImageData(image);
+//      model.addAttribute("image", image);
     } catch (Exception e) {
 
     }
@@ -94,8 +94,20 @@ public class ProductController {
   }
 
   @PostMapping("/product/{product_id}/edit")
-  public String productUpdate(@PathVariable long product_id, ProductForm form){
-    productRepository.update(product_id, form.getProduct_name(), form.getColor_chart() ,form.getImage_data(), form.getImage_filename(), form.getComment());
+  public String productUpdate(@PathVariable long product_id, ProductForm form, @RequestParam("file") MultipartFile file, Model model){
+    try {
+      String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+      // 画像データの取得
+      byte[] imageData = file.getBytes();
+
+      // 保存するProductEntityの作成
+      form.setImage_filename(fileName);
+      form.setImage_data(imageData);
+
+    } catch (Exception e) {
+
+    }
+    productRepository.update(product_id, form.getProduct_name(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
     return "redirect:/product/{product_id}";
   }
 

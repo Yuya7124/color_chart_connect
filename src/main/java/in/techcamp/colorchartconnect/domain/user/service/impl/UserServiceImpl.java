@@ -2,6 +2,7 @@ package in.techcamp.colorchartconnect.domain.user.service.impl;
 
 import in.techcamp.colorchartconnect.domain.user.service.UserService;
 import in.techcamp.colorchartconnect.entity.UserEntity;
+import in.techcamp.colorchartconnect.form.SignupForm;
 import in.techcamp.colorchartconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,14 +19,18 @@ public class UserServiceImpl implements UserService {
 
   //ユーザー登録
   @Override
-  public void signup(UserEntity entity){
-    String rawPassword = entity.getPassword();
-    entity.setPassword(passwordEncoder.encode(rawPassword));
-    userRepository.insertOne(entity.getNickname(), entity.getEmail(), rawPassword);
+  public void signup(SignupForm form){
+    UserEntity user = new UserEntity();
+
+    user.setNickname(user.getNickname());
+    user.setEmail(user.getEmail());
+    // パスワードをハッシュ化してセットする
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword());
   }
 
   @Override
-  public UserEntity getLoginUser(String userId){
+  public SignupForm getLoginUser(String userId){
     return userRepository.findLoginUser(userId);
   }
 }

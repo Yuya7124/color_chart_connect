@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
 <head>
   <link rel="stylesheet" th:href="@{/css/product/detail.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
   <meta charset="UTF-8">
   <title>Color Chart Connect</title>
 </head>
@@ -19,17 +20,17 @@
       <label class="info_label">作品名：</label>
       <div th:text="${product.getProduct_name()}"></div>
     </div>
+    <label class="info_label">カラーガイド：</label>
     <div class="product_info">
-      <label class="info_label">作品名：</label>
-      <div th:text="${product.getColor_chart}"></div>
+      <br /><div th:text="${product.getColor_chart}"></div>
     </div>
+    <label class="info_label">コメント：</label>
     <div class="product_info">
-      <label class="info_label">作品名：</label>
-      <div th:text="${product.getComment}"></div>
+      <br /><div th:text="${product.getComment}"></div>
     </div>
   </div>
   <div class="edit_menu">
-    <a th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
+    <a class="edit_btn" th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
     <form method="post" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
       <button type="submit" class="delete_btn">削除</button>
     </form>

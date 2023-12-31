@@ -1,6 +1,9 @@
 /* ヘッダー */
+
 .navber-band {
   font-size: 20px;
+  text-decoration: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 10px 0 0 20px;
 }
 
@@ -8,14 +11,3 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
-
-.title_name {
-  text-align: center;
-}
-
-.back_btn {
-  text-align: right;
-}

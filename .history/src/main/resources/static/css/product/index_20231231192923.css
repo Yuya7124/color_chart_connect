@@ -1,3 +1,7 @@
+.title_name {
+  text-align: center;
+}
+
 .header_menu {
   display: flex;
   justify-content: space-between;
@@ -26,4 +30,11 @@
 
 .image_name {
   text-align: center;
+}
+
+nav {
+  font-size: 20px;
+  text-align: end;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 10px 0 0 20px;
 }

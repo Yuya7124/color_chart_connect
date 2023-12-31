@@ -1,5 +1,6 @@
 package in.techcamp.colorchartconnect.controller;
 
+import in.techcamp.colorchartconnect.domain.user.service.impl.UserServiceImpl;
 import in.techcamp.colorchartconnect.form.GroupOrder;
 import in.techcamp.colorchartconnect.form.SignupForm;
 import in.techcamp.colorchartconnect.repository.UserRepository;
@@ -16,13 +17,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
 @Slf4j
 public class SignupController {
 
+  @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private UserServiceImpl userServiceImpl;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -40,19 +46,17 @@ public class SignupController {
     //入力チェック
     if(bindingResult.hasErrors()){
       //エラー発生時
+      String error_msg = bindingResult.getAllErrors().stream()
+              .map(err -> err.getDefaultMessage())
+              .collect(Collectors.joining(", "));
       return getSignup(model, locale, form);
     }
 
     log.info(form.toString());
-
-    //entity → MUser
-    //UserEntity user = modelMapper.map(form, UserEntity.class);
-
     String rawPassword = form.getPassword();
     form.setPassword(passwordEncoder.encode(rawPassword));
 
     //ユーザー登録
-    //userService.signup(user);
     userRepository.insertOne(form.getNickname(), form.getEmail(), rawPassword);
 
     //メイン画面へ遷移

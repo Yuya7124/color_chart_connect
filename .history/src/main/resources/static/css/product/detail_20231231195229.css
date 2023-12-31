@@ -4,7 +4,7 @@
 }
 
 .info {
-  margin: 0 auto;
+margin: 0 auto;
   width: 500px;
 }
 
@@ -19,4 +19,5 @@
 
 .product_info {
   display: flex;
+  justify-content: space-around;
 }
