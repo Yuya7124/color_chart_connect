@@ -1,6 +1,7 @@
 package in.techcamp.colorchartconnect.controller;
 
 import in.techcamp.colorchartconnect.domain.user.service.impl.UserServiceImpl;
+import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.GroupOrder;
 import in.techcamp.colorchartconnect.form.SignupForm;
 import in.techcamp.colorchartconnect.repository.UserRepository;
@@ -11,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -41,6 +39,7 @@ public class SignupController {
 
   //ユーザー登録
   @PostMapping("/signup")
+  @RequestMapping(value = "signup", method = RequestMethod.POST)
   public String postSignup(Model model, Locale locale, @ModelAttribute @Validated(GroupOrder.class) SignupForm form, BindingResult bindingResult) {
 
     //入力チェック
@@ -52,12 +51,17 @@ public class SignupController {
       return getSignup(model, locale, form);
     }
 
-    log.info(form.toString());
-    String rawPassword = form.getPassword();
-    form.setPassword(passwordEncoder.encode(rawPassword));
 
-    //ユーザー登録
-    userRepository.insertOne(form.getNickname(), form.getEmail(), rawPassword);
+    String rawPassword = form.getPassword();
+    // UserEntity を作成して UserRepository に渡す
+    UserEntity entity = new UserEntity();
+    entity.setNickname(form.getNickname());
+    entity.setEmail(form.getEmail());
+    entity.setPassword(passwordEncoder.encode(rawPassword));
+
+    // ユーザー登録
+    userRepository.insertOne(entity);
+    log.info(form.toString());
 
     //メイン画面へ遷移
     return "redirect:/login";

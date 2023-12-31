@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository {
   //ユーザー登録
   @Insert("INSERT INTO user (nickname, email, password) VALUES (#{nickname}, #{email}, #{password})")
-  void insertOne(String nickname, String email, String password);
+  void insertOne(UserEntity entity);
 
   public SignupForm findLoginUser(String userId);
 }

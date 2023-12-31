@@ -1,5 +1,7 @@
 package in.techcamp.colorchartconnect.config;
 
+import in.techcamp.colorchartconnect.domain.user.service.impl.UserDetailServiceImpl;
+import in.techcamp.colorchartconnect.domain.user.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -44,8 +46,6 @@ public class SecurityConfig {
             .requestMatchers("/product/**").permitAll()
             .requestMatchers("/product/{product_id}").permitAll()
             .requestMatchers("/product/{product_id}/edit").permitAll()
-            .requestMatchers("/general").hasRole("GENERAL")
-            .requestMatchers("/admin").hasRole("ADMIN")
             .anyRequest().authenticated()
     );
     return http.build();

@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService {
 
   //ユーザー登録
   @Override
-  public void signup(SignupForm form){
+  public void signup(UserEntity entity){
     UserEntity user = new UserEntity();
 
     user.setNickname(user.getNickname());
     user.setEmail(user.getEmail());
     // パスワードをハッシュ化してセットする
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword());
+    userRepository.insertOne(entity);
   }
 
   @Override
