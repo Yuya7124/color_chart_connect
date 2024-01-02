@@ -1,0 +1,25 @@
+/* ヘッダー */
+.navber-band {
+  font-size: 20px;
+  margin: 10px 0 0 20px;
+}
+
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title_name {
+  text-align: center;
+}
+
+.back_btn {
+  text-align: right;
+}
+
+br {
+  white-space: pre-line;
+}

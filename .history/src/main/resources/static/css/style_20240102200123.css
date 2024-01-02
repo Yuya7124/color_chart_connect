@@ -1,0 +1,52 @@
+/* ヘッダー */
+.navber-band {
+  font-size: 25px;
+  margin: 40px 0 0 30px;
+  color: #FFFFFF;
+}
+
+.header_menu {
+  display: flex;
+  justify-content: space-between;
+  background-color: #044700;
+  height: 50px;
+}
+
+.navbar-header {
+  margin-top: 10px;
+}
+
+.new_product {
+  padding: 12.5px 5px;
+}
+
+.new_btn {
+  width: 80px;
+  border-radius: 5px;
+  background-color: #aeffdd;
+}
+
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title_name {
+  text-align: center;
+}
+
+header {
+  background-color: #044700;
+}
+
+.back_btn {
+  text-align: right;
+}
+
+br {
+  white-space: pre-line;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/css/product/product.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/productImage.js}" defer></script>
+    <meta charset="UTF-8">
+    <title>編集画面</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header_menu">
+        <nav layout:replace="~{layout/header::header}"></nav>
+    </header>
+    <h1 class="title_name">投稿編集ページ</h1>
+    <form action="#" th:action="@{/product/{Product_id}/edit(Product_id=${product.getProduct_id()})}" th:method="post" th:object="${product}" enctype="multipart/form-data">
+        <div class="product_form">
+            <label class="product_label">Product Name</label><br>
+            <input type="text" id="product-name" class="product" th:field="*{product_name}">
+        </div>
+        <div class="product_form">
+            <input type="file" name="file" id="file" class="import_img" onchange="previewFile()">
+            <img id="file-preview" class="preview">
+        </div>
+
+        <script>
+            function previewFile() {
+                var input = document.getElementById('file');
+                var preview = document.getElementById('file-preview');
+
+                var file = input.files[0];
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src = "";
+                }
+            }
+        </script>
+        <div class="product_form">
+            <label class="product_label">Color Chart</label><br>
+            例）部位、塗料の色(ブランド名)、比率<br>
+            <textarea id="product-color-chart" class="color_chart"
+                      placeholder="部位、塗料の色(ブランド名)、比率"
+                      th:field="*{color_chart}"></textarea>
+        </div>
+        <div class="product_form">
+            <label class="product_label">Comment</label><br>
+            <textarea id="product-comment" class="my_comment" th:field="*{comment}"></textarea>
+        </div>
+        <div class="product_form">
+            <div class="submit_menu">
+                <button type="submit" class="submit_btn">更新</button>
+                <a class="back_btn" th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}">戻る</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

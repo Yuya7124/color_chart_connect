@@ -10,8 +10,6 @@ public class MUser {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long user_id;
   private String nickname;
-
   private String email;
-
   private String password;
 }

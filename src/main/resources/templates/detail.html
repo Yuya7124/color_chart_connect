@@ -9,7 +9,12 @@
 </head>
 <body>
   <!-- Header -->
-  <nav layout:replace="~{layout/header::header}"></nav>
+  <header class="header_menu">
+    <nav layout:replace="~{layout/header::header}"></nav>
+    <div class="new_product">
+      <a class="new_btn" th:href="@{/product}">新規投稿</a>
+    </div>
+  </header>
   <!-- contents -->
   <h1 class="title_name">詳細ページ</h1>
   <div class="info">
@@ -18,23 +23,28 @@
     </div>
     <div class="product_info">
       <label class="info_label">作品名：</label>
-      <div th:text="${product.getProduct_name()}"></div>
+      <label th:text="${product.getProduct_name}"></label>
     </div>
-    <label class="info_label">カラーガイド：</label>
+
     <div class="product_info">
-      <br /><div th:text="${product.getColor_chart}"></div>
+      <label class="info_label">カラーガイド：</label><br>
+      <label th:text="${product.getColor_chart}"></label>
     </div>
-    <label class="info_label">コメント：</label>
     <div class="product_info">
-      <br /><div th:text="${product.getComment}"></div>
+      <label class="info_label">コメント：</label><br>
+      <label th:text="${product.getComment}"></label>
     </div>
+    <div class="edit_menu">
+      <div class="edit_text">
+        <a class="edit_btn" th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
+      </div>
+      <form method="post" class="delete" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
+        <button type="submit" class="delete_btn">削除</button>
+      </form>
+    </div>
+      <div class="back">
+        <a class="back_menu" href="/">戻る</a>
+      </div>
   </div>
-  <div class="edit_menu">
-    <a class="edit_btn" th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
-    <form method="post" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
-      <button type="submit" class="delete_btn">削除</button>
-    </form>
-  </div>
-  <a class="back_btn" href="/">戻る</a>
 </body>
 </html>

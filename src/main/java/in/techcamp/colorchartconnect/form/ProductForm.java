@@ -12,7 +12,9 @@ public class ProductForm {
   @NotBlank
   private String product_name;
   private String color_chart;
+  @NotBlank
   private byte[] image_data;
+  @NotBlank
   private String image_filename;
   private String comment;
 }

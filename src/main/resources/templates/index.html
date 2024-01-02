@@ -8,28 +8,29 @@
     <title>Color Chart Connect</title>
 </head>
 <body>
-<!-- Header -->
-<div class="header_menu">
-    <nav layout:replace="~{layout/header::header}"></nav>
-    <a th:href="@{/product}">新規投稿画面</a>
-</div>
-<!-- contents -->
-<h1 class="title_name">投稿一覧</h1>
+    <!-- Header -->
+    <header class="header_menu">
+        <nav layout:replace="~{layout/header::header}"></nav>
+        <div class="new_product">
+            <a class="new_btn" th:href="@{/product}">新規投稿</a>
+        </div>
+    </header>
+    <!-- contents -->
+    <h1 class="title_name">投稿一覧</h1>
 
-<form id="productForm" method="post" class="product_form" th:object="${product}" enctype="multipart/form-data">
-    <div class="product_list" th:each="product:${productList}">
-        <div class="product_data">
-            <div class="image_data">
-                <img class="img_file" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
-            </div>
-            <div class="product_name">
-                <label>作品名:　</label>
-                <a class="image_name" th:text="${product.getProduct_name()}"
-                   th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
+    <form id="productForm" method="post" class="product_form" th:object="${product}" enctype="multipart/form-data">
+        <div class="product_list" th:each="product:${productList}">
+            <div class="product_data">
+                <div class="image_data">
+                    <img class="img_file" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
+                </div>
+                <div class="product_name">
+                    <label>作品名:</label>
+                    <a class="image_name" th:text="${product.getProduct_name()}"
+                       th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
+                </div>
             </div>
         </div>
-    </div>
-</form>
-
+    </form>
 </body>
 </html>

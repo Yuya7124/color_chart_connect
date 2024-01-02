@@ -4,32 +4,44 @@
 <head>
   <link rel="stylesheet" th:href="@{/css/product/product.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
-  <script th:src="@{js/productImage.js}" defer></script>
+  <script th:src="@{/js/productImage.js}" defer></script>
   <meta charset="UTF-8">
   <title>新規登録</title>
 </head>
   <body>
   <!-- Header -->
-  <nav layout:replace="~{layout/header::header}"></nav>
+  <header class="header_menu">
+    <nav layout:replace="~{layout/header::header}"></nav>
+  </header>
   <h1 class="title_name">新規投稿ページ</h1>
     <form action="#" th:action="@{/product}" th:method="post" th:object="${product}" enctype="multipart/form-data">
-      <div class="product_name_title">Product Name
+      <div class="product_form">
+        <label class="product_label">Product Name</label><br>
         <input type="text" id="product-name" class="product" th:field="*{product_name}">
       </div>
-      <div class="image">
-        <input type="file" name="file" id="file">
+      <div class="product_form">
+        <input type="file" name="file" id="file" class="import_img">
+        <img id="file-preview" class="preview">
       </div>
-      <div class="product_comment_title">Color Chart<br>
+      <div class="product_form">
+        <label class="product_label">Color Chart</label><br>
         例）部位、塗料の色(ブランド名)、比率<br>
         <textarea id="product-color-chart" class="color_chart"
                   placeholder="部位、塗料の色(ブランド名)、比率"
                   th:field="*{color_chart}"></textarea>
       </div>
-      <div class="product_comment_title">Comment
+      <div class="product_form">
+        <label class="product_label">Comment</label><br>
         <textarea id="product-comment" class="my_comment" th:field="*{comment}"></textarea>
       </div>
-      <button type="submit">作成</button>
-      <a href="/">戻る</a>
+      <div class="product_form">
+        <div class="submit_menu">
+          <button type="submit" class="submit_btn">作成</button>
+          <div class="back">
+            <a class="back_btn" href="/">戻る</a>
+          </div>
+        </div>
+      </div>
     </form>
   </body>
 </html>

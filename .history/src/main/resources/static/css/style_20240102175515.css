@@ -1,0 +1,35 @@
+/* ヘッダー */
+.navber-band {
+  font-size: 25px;
+  margin: 40px 0 0 30px;
+}
+
+.header_menu {
+  display: flex;
+  justify-content: space-between;
+  color: #044700;
+}
+
+.new_product {
+  margin-right: 20px;
+}
+
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title_name {
+  text-align: center;
+}
+
+.back_btn {
+  text-align: right;
+}
+
+br {
+  white-space: pre-line;
+}
