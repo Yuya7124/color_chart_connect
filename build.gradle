@@ -8,7 +8,7 @@ group = 'in.tech-camp'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+	sourceCompatibility = '21'
 }
 
 configurations {
@@ -39,13 +39,13 @@ dependencies {
 	implementation 'org.webjars:jquery'
 	implementation 'org.webjars:bootstrap:4.5.3'
 	implementation 'org.webjars:webjars-locator:0.40'
-	implementation 'org.projectlombok:lombok:1.18.22'
+	implementation 'org.projectlombok:lombok:1.18.30'
 
-	compileOnly 'org.projectlombok:lombok:1.18.22'
+	compileOnly 'org.projectlombok:lombok:1.18.30'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'org.aspectj:aspectjweaver:1.6.10'
 
-	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
 }
