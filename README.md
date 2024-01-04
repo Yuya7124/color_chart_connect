@@ -28,6 +28,7 @@ Color Chart Connect
 
 #### 実装予定の機能
 
+
 #### 画面遷移図
 
 
@@ -40,7 +41,7 @@ Color Chart Connect
 - Spring Data JPA
 - Thymeleaf
 - Spring Web
-- PostgreSQL
+- MySQL
 - Javax Persistence API
   
 工夫したポイント
