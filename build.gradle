@@ -9,6 +9,10 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '21'
+	toolchain {
+		// 使用する JDK バージョンを指定
+		languageVersion.set(JavaLanguageVersion.of(21))
+	}
 }
 
 configurations {
