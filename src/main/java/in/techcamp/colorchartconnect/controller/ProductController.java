@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
   private final ProductRepository productRepository;
-
-  @Value("${image.folder}")
-  private String imgFolder;
 
   @Value("${image.extract}")
   private String imgExtract;
@@ -52,12 +52,20 @@ public class ProductController {
   //データ保存
 
   @PostMapping("/product")
-  public String saveProduct(@ModelAttribute ProductForm form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
+  public String saveProduct(@ModelAttribute @Validated ProductForm form, @RequestParam("file") MultipartFile file, Model model, BindingResult bindingResult) throws IOException {
+    // 入力チェック
+    if (bindingResult.hasErrors()){
+      // エラー発生時
+      String error_msg = bindingResult.getAllErrors().stream()
+              .map(err -> err.getDefaultMessage())
+              .collect(Collectors.joining(", "));
+      return showProductForm(form);
+    }
+
     try {
       String fileName = StringUtils.cleanPath(file.getOriginalFilename());
       // 画像データの取得
       byte[] imageData = file.getBytes();
-
       // 保存するProductEntityの作成
       form.setImage_filename(fileName);
       form.setImage_data(imageData);
@@ -65,9 +73,10 @@ public class ProductController {
     } catch (Exception e) {
 
     }
-    model.addAttribute("productForm", form);
-    productRepository.insert(form.getProduct_name(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
-    return "redirect:/";
+
+     model.addAttribute("productForm", form);
+     productRepository.insert(form.getProduct_name(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
+     return "redirect:/";
   }
 
   @GetMapping("/product/{product_id}")

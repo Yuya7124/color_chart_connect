@@ -14,12 +14,12 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ProductImageServiceImpl { //implements ProductImageService {
 
-  @Value("${image.folder}")
-  private String imgFolder;
-
-  @Value("${image.extract}")
-
-  private String imgExtract;
+//  @Value("${image.folder}")
+//  private String imgFolder;
+//
+//  @Value("${image.extract}")
+//
+//  private String imgExtract;
 
 //  @Override
 //  public void saveProduct(ProductForm form) throws IOException {
@@ -44,13 +44,13 @@ public class ProductImageServiceImpl { //implements ProductImageService {
 //    return name;
 //  }
 
-  public void store(MultipartFile file) throws IOException {
-    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-    // 画像データの取得
-    byte[] imageData = file.getBytes();
-    // 保存するProductEntityの作成
-    ProductForm form = new ProductForm();
-    form.setImage_filename(fileName);
-    form.setImage_data(imageData);
-  }
+//  public void store(MultipartFile file) throws IOException {
+//    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//    // 画像データの取得
+//    byte[] imageData = file.getBytes();
+//    // 保存するProductEntityの作成
+//    ProductForm form = new ProductForm();
+//    form.setImage_filename(fileName);
+//    form.setImage_data(imageData);
+//  }
 }
