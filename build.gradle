@@ -8,10 +8,10 @@ group = 'in.tech-camp'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '21'
+	sourceCompatibility = '17'
 	toolchain {
 		// 使用する JDK バージョンを指定
-		languageVersion.set(JavaLanguageVersion.of(21))
+		languageVersion.set(JavaLanguageVersion.of(17))
 	}
 }
 
