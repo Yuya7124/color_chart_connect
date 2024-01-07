@@ -52,3 +52,7 @@ header {
 br {
   white-space: pre-line;
 }
+
+.invalid_feedback {
+  color: #ff2727;
+}

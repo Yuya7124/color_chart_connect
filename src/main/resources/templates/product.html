@@ -14,10 +14,12 @@
     <nav layout:replace="~{layout/header::header}"></nav>
   </header>
   <h1 class="title_name">新規投稿ページ</h1>
-    <form action="#" th:action="@{/product}" th:method="post" th:object="${product}" enctype="multipart/form-data">
+    <form action="#" th:action="@{/product}" th:method="post" th:object="${productForm}" enctype="multipart/form-data">
       <div class="product_form">
         <label class="product_label">Product Name</label><br>
-        <input type="text" id="product-name" class="product" th:field="*{product_name}">
+        <label for="product-name"></label>
+        <input type="text" id="product-name" class="product" th:field="*{product_name}" th:errorclass="is-invalid">
+        <div class="invalid_feedback" th:errors="*{product_name}"></div>
       </div>
       <div class="product_form">
         画像形式：.png<br>
@@ -27,12 +29,15 @@
       <div class="product_form">
         <label class="product_label">Color Chart</label><br>
         例）部位、塗料の色(ブランド名)、比率<br>
+        <label for="product-color-chart"></label>
         <textarea id="product-color-chart" class="color_chart"
                   placeholder="部位、塗料の色(ブランド名)、比率"
-                  th:field="*{color_chart}"></textarea>
+                  th:field="*{color_chart}" th:errorclass="is-invalid"></textarea>
+        <div class="invalid_feedback" th:errors="*{color_chart}"></div>
       </div>
       <div class="product_form">
         <label class="product_label">Comment</label><br>
+        <label for="product-comment"></label>
         <textarea id="product-comment" class="my_comment" th:field="*{comment}"></textarea>
       </div>
       <div class="product_form">
