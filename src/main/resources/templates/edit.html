@@ -22,7 +22,6 @@
             <div class="invalid_feedback" th:errors="*{product_name}"></div>
         </div>
         <div class="product_form">
-            画像形式：.png<br>
             <input type="file" name="file" id="file" class="import_img">
             <img id="file-preview" class="img_file_detail" th:src="${product.encodedImageData}" th:alt="${product.image_filename}">
         </div>

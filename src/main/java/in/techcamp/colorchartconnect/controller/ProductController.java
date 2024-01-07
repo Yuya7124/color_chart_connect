@@ -122,27 +122,24 @@ public class ProductController {
   // データ更新
   @PostMapping("/product/{product_id}/edit")
   public String productUpdate(@PathVariable long product_id, @Valid @ModelAttribute("productForm") ProductForm form, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) throws IOException {
+    var product = productRepository.findById(product_id);
+    form.setFile(file);
+    form.convertFileToBytes();
+    form.setImage_data(product.getImage_data());
+    form.setImage_filename(product.getImage_filename());
+
     if (bindingResult.hasErrors()){
       // エラー発生時
       return productEdit(product_id, form, model);
     }
 
     try {
-      if (form.getImage_data() == null || form.getImage_filename() == null || file.isEmpty()) {
-        var product = productRepository.findById(product_id);
-        form.setFile(file);
-        form.convertFileToBytes();
-        form.setImage_data(product.getImage_data());
-        form.setImage_filename(product.getImage_filename());
-      }
-      else {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         // 画像データの取得
         byte[] imageData = file.getBytes();
         // 保存するProductEntityの作成
         form.setImage_filename(fileName);
         form.setImage_data(imageData);
-      }
     } catch (Exception e) {
       return productEdit(product_id, form, model);
     }
