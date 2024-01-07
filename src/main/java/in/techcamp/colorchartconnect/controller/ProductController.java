@@ -68,12 +68,15 @@ public class ProductController {
       String fileName = StringUtils.cleanPath(file.getOriginalFilename());
       // 画像データの取得
       byte[] imageData = file.getBytes();
+
+      
+
       // 保存するProductEntityの作成
       form.setImage_filename(fileName);
       form.setImage_data(imageData);
 
     } catch (Exception e) {
-
+      return showProductForm(form);
     }
 
      model.addAttribute("productForm", form);
