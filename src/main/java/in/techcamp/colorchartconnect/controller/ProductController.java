@@ -5,7 +5,8 @@ import in.techcamp.colorchartconnect.repository.ProductRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -13,9 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,8 +27,17 @@ import java.util.stream.Collectors;
 public class ProductController {
   private final ProductRepository productRepository;
 
-  @Value("${image.extract}")
-  private String imgExtract;
+  // 画像ファイル圧縮
+  private byte[] compressImage(byte[] originalImageData, int targetWidth, int targetHeight) throws IOException {
+    try (ByteArrayInputStream inputStream = new ByteArrayInputStream(originalImageData);
+         ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+      Thumbnails.of(inputStream)
+              .size(targetWidth, targetHeight)
+              .outputFormat("png") // 出力フォーマットを選択
+              .toOutputStream(outputStream);
+      return outputStream.toByteArray();
+    }
+  }
 
   // 一覧画面
   @GetMapping
@@ -69,13 +82,21 @@ public class ProductController {
       // 画像データの取得
       byte[] imageData = file.getBytes();
 
-      
-
-      // 保存するProductEntityの作成
-      form.setImage_filename(fileName);
-      form.setImage_data(imageData);
-
-    } catch (Exception e) {
+      if (imageData.length > 1000000) {
+        int targetWidth = 250; // 適切な幅を指定
+        int targetHeight = 187; // 適切な高さを指定
+        byte[] compressedImageData = compressImage(imageData, targetWidth, targetHeight);
+        // 保存するProductEntityの作成
+        form.setImage_filename(fileName);
+        form.setImage_data(compressedImageData);
+      }
+      else {
+        // 保存するProductEntityの作成
+        form.setImage_filename(fileName);
+        form.setImage_data(imageData);
+      }
+    }
+    catch (Exception e) {
       return showProductForm(form);
     }
 
