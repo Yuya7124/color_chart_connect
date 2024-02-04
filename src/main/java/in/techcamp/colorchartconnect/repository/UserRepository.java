@@ -1,11 +1,12 @@
 package in.techcamp.colorchartconnect.repository;
 
+import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import in.techcamp.colorchartconnect.form.SignupForm;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 @Mapper
-//@Repository
 public interface UserRepository {
   //ユーザー登録
   @Insert("INSERT INTO user (nickname, email, password) VALUES (#{nickname}, #{email}, #{password})")

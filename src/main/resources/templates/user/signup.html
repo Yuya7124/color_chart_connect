@@ -5,7 +5,7 @@
     <title>新規登録</title>
 </head>
 <body>
-<form id="signup-form" th:method="post" th:action=@{"/user/signup"} class="form_signup" th:object="${signupForm}">
+<form id="signup-form" th:method="post" th:action="@{/user/signup}" class="form_signup" th:object="${signupForm}">
     <h1 class="siginup_title">User Registration</h1>
     <div class="nickname_group">
         <label class="nickname_label" th:text="#{nickname}">ニックネーム</label>
