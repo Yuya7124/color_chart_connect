@@ -1,8 +1,12 @@
 package in.techcamp.colorchartconnect.config;
 
+import in.techcamp.colorchartconnect.domain.user.service.impl.UserDetailServiceImpl;
+import in.techcamp.colorchartconnect.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,6 +16,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+
+  private UserDetailServiceImpl userDetailService;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -45,5 +52,23 @@ public class SecurityConfig {
             .anyRequest().authenticated()
     );
     return http.build();
+  }
+
+
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+      PasswordEncoder encoder = passwordEncoder();
+      //インメモリ認証
+      auth.inMemoryAuthentication()
+              .withUser("user")
+              .password(encoder.encode("user"))
+              .roles("GENERAL")
+              .and()
+              .withUser("admin")
+              .password(encoder.encode("admin"))
+              .roles("ADMIN");
+
+      //ユーザーデータ認証
+      auth.userDetailsService(userDetailService).passwordEncoder(encoder);
   }
 }

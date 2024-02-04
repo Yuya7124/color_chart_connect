@@ -10,5 +10,5 @@ public interface UserService {
   //ユーザー登録
   public void signup(MUser muser);
 
-  //public SignupForm getLoginUser(String userId);
+  public SignupForm getLoginUser(String userId);
 }

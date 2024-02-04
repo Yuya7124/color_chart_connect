@@ -8,36 +8,36 @@ import in.techcamp.colorchartconnect.repository.UserMapper;
 import in.techcamp.colorchartconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-//  @Autowired
-//  private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
   @Autowired
   private UserMapper mapper;
 
-//  @Autowired
-//  private PasswordEncoder passwordEncoder;
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   //ユーザー登録
   @Override
   public void signup(MUser muser){
-//    UserEntity user = new UserEntity();
-//
-//    user.setNickname(user.getNickname());
-//    user.setEmail(user.getEmail());
-//    // パスワードをハッシュ化してセットする
-//    user.setPassword(passwordEncoder.encode(user.getPassword()));
-//    userRepository.insertOne(user.getNickname(), user.getEmail(), user.getPassword());
+    UserEntity user = new UserEntity();
+
+    user.setNickname(user.getNickname());
+    user.setEmail(user.getEmail());
+    // パスワードをハッシュ化してセットする
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    userRepository.insertOne(user.getNickname(), user.getEmail(), user.getPassword());
 
     mapper.insertOne(muser);
   }
-//
-//  @Override
-//  public SignupForm getLoginUser(String userId){
-//    return userRepository.findLoginUser(userId);
-//  }
+
+  public SignupForm getLoginUser(String userId){
+    return userRepository.findLoginUser(userId);
+  }
 }
