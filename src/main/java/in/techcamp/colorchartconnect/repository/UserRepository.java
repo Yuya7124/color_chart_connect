@@ -1,10 +1,8 @@
 package in.techcamp.colorchartconnect.repository;
 
-import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import in.techcamp.colorchartconnect.form.SignupForm;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 @Mapper
 public interface UserRepository {
