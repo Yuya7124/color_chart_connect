@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.*;
 public interface UserRepository {
   //ユーザー登録
   @Insert("INSERT INTO user (nickname, email, password) VALUES (#{nickname}, #{email}, #{password})")
-  void insertOne(@Param("nickname") String nickname, @Param("email") String email, @Param("password") String password);
+  void insertOne(@Param("nickname") String nickname, @Param("email") String email, @Param("password") String password, @Param("role") String role);
   @Select("select * from user where nickname = #{nickname}")
   public SignupForm findLoginUser(String nickname);
 }

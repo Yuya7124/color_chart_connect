@@ -7,12 +7,14 @@
         insert into user (
         nickname,
         email,
-        password
+        password,
+        role
         )
         values (
         #{nickname},
         #{email},
-        #{password}
+        #{password},
+        #{role}
         )
     </insert>
 </mapper>

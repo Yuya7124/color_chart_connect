@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.context.annotation.Role;
 
 import javax.persistence.*;
 
@@ -31,4 +32,7 @@ public class UserEntity {
   @Pattern(regexp = "^[a-zA-Z0-9]+$", groups = ValidGroup2.class)
   @Column(name = "password")
   private String password;
+  @NotBlank
+  @Column(name = "role")
+  private String role;
 }

@@ -12,4 +12,5 @@ public class MUser {
   private String nickname;
   private String email;
   private String password;
+  private String role;
 }

@@ -36,4 +36,7 @@ public class SignupForm {
     }
     return password.equals(confirm_password);
   }
+
+  @NotBlank
+  private String role;
 }

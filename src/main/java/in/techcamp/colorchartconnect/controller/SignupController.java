@@ -8,6 +8,8 @@ import in.techcamp.colorchartconnect.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +27,6 @@ public class SignupController {
 
   @Autowired
   private UserRepository userRepository;
-
-  @Autowired
-  private UserService userService;
-
-  @Autowired
-  private ModelMapper modelMapper;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -60,14 +56,12 @@ public class SignupController {
     entity.setNickname(form.getNickname());
     entity.setEmail(form.getEmail());
     entity.setPassword(passwordEncoder.encode(rawPassword));
+    entity.setRole("GENERAL");
 
 //    // ユーザー登録
     model.addAttribute("signupForm", form);
-    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword());
+    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword(), form.getRole());
     log.info(form.toString());
-
-//    MUser muser = modelMapper.map(form, MUser.class);
-//    userService.signup(muser);
 
     //メイン画面へ遷移
     return "redirect:/login";

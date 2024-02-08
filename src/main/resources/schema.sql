@@ -2,7 +2,8 @@ CREATE TABLE IF NOT EXISTS user (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nickname VARCHAR(256),
     email VARCHAR(256),
-    password VARCHAR(100)
+    password VARCHAR(100),
+    role VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS product (

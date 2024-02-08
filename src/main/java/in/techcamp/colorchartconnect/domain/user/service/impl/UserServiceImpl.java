@@ -4,7 +4,6 @@ import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import in.techcamp.colorchartconnect.domain.user.service.UserService;
 import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.SignupForm;
-import in.techcamp.colorchartconnect.repository.UserMapper;
 import in.techcamp.colorchartconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,9 +14,6 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private UserRepository userRepository;
-
-  @Autowired
-  private UserMapper mapper;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -31,9 +27,7 @@ public class UserServiceImpl implements UserService {
     user.setEmail(user.getEmail());
     // パスワードをハッシュ化してセットする
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    userRepository.insertOne(user.getNickname(), user.getEmail(), user.getPassword());
-
-    mapper.insertOne(muser);
+    userRepository.insertOne(user.getNickname(), user.getEmail(), user.getPassword(), user.getRole());
   }
 
   @Override
