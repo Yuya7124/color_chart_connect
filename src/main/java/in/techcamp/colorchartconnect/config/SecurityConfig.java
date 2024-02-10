@@ -1,7 +1,6 @@
 package in.techcamp.colorchartconnect.config;
 
 import in.techcamp.colorchartconnect.domain.user.service.impl.UserDetailServiceImpl;
-import in.techcamp.colorchartconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +31,7 @@ public class SecurityConfig {
                     .loginProcessingUrl("/login")
                     .loginPage("/login")
                     .failureUrl("/login?error")
-                    .usernameParameter("nickname")
+                    .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/",true)
                     .permitAll()
@@ -44,6 +43,7 @@ public class SecurityConfig {
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
             .requestMatchers("/css/**").permitAll()
             .requestMatchers("/").permitAll()
+            .requestMatchers("/general").hasRole("GENERAL")
             .requestMatchers("/user/signup").permitAll()
             .requestMatchers("/signup").permitAll()
             .requestMatchers("/product/**").permitAll()
@@ -58,15 +58,12 @@ public class SecurityConfig {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
       PasswordEncoder encoder = passwordEncoder();
-      //インメモリ認証
-      auth.inMemoryAuthentication()
-              .withUser("user")
-              .password(encoder.encode("user"))
-              .roles("GENERAL")
-              .and()
-              .withUser("admin")
-              .password(encoder.encode("admin"))
-              .roles("ADMIN");
+//       //インメモリ認証
+//       auth.inMemoryAuthentication()
+//               .passwordEncoder(passwordEncoder())
+//               .withUser("test")
+//               .password(encoder.encode("password"))
+//               .roles("GENERAL");
 
       //ユーザーデータ認証
       auth.userDetailsService(userDetailService).passwordEncoder(encoder);

@@ -1,15 +1,11 @@
 package in.techcamp.colorchartconnect.controller;
 
-import in.techcamp.colorchartconnect.domain.user.service.UserService;
 import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.GroupOrder;
 import in.techcamp.colorchartconnect.form.SignupForm;
 import in.techcamp.colorchartconnect.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -43,10 +38,6 @@ public class SignupController {
 
     // 入力チェック
     if(bindingResult.hasErrors()){
-      // エラー発生時
-      String error_msg = bindingResult.getAllErrors().stream()
-              .map(err -> err.getDefaultMessage())
-              .collect(Collectors.joining(", "));
       return getSignup(model, locale, form);
     }
 
@@ -55,13 +46,12 @@ public class SignupController {
     UserEntity entity = new UserEntity();
     entity.setNickname(form.getNickname());
     entity.setEmail(form.getEmail());
-    entity.setPassword(passwordEncoder.encode(rawPassword));
-    entity.setRole("GENERAL");
 
-//    // ユーザー登録
+    // ユーザー登録
     model.addAttribute("signupForm", form);
-    userRepository.insertOne(form.getNickname(), form.getEmail(), form.getPassword(), form.getRole());
+    userRepository.insertOne(form.getNickname(), form.getEmail(), passwordEncoder.encode(rawPassword), "GENERAL");
     log.info(form.toString());
+    
 
     //メイン画面へ遷移
     return "redirect:/login";

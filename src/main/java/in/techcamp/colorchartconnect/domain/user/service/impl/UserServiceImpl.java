@@ -1,6 +1,5 @@
 package in.techcamp.colorchartconnect.domain.user.service.impl;
 
-import in.techcamp.colorchartconnect.domain.user.model.MUser;
 import in.techcamp.colorchartconnect.domain.user.service.UserService;
 import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.SignupForm;
@@ -20,13 +19,14 @@ public class UserServiceImpl implements UserService {
 
   //ユーザー登録
   @Override
-  public void signup(MUser muser){
-    UserEntity user = new UserEntity();
+  public void signup(UserEntity user){
 
     user.setNickname(user.getNickname());
     user.setEmail(user.getEmail());
+
     // パスワードをハッシュ化してセットする
     user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setRole("GENERAL");
     userRepository.insertOne(user.getNickname(), user.getEmail(), user.getPassword(), user.getRole());
   }
 
