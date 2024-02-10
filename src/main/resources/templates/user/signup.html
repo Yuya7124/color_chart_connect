@@ -29,6 +29,7 @@
     </div>
 
     <input type="submit" th:value="登録" class="signup_btn">
+    <input type="hidden" th:name="${_csrf.parametarName}" th:value="${_csrf.token}" />
 </form>
 </body>
 </html>

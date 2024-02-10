@@ -14,6 +14,13 @@
         <div class="new_product">
             <a class="new_btn" th:href="@{/product}">新規投稿</a>
         </div>
+        <span th:text="${user.getNickname()}"></span>
+        <form method="post" th:action="@{logout}">
+            <span th:if="${user != null}" th:text="${user.getNickname()}"></span>
+            <button class="btn btn-link pull-right navbar-brand" type="submit">
+                ログアウト
+            </button>
+        </form>
     </header>
     <!-- contents -->
     <h1 class="title_name">投稿一覧</h1>
