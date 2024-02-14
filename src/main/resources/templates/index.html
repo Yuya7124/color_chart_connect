@@ -13,20 +13,19 @@
         <nav layout:replace="~{layout/header::header}"></nav>
         <div class="new_product">
             <a class="new_btn" th:href="@{/product}">新規投稿</a>
-            <div class="user_info" th:object="${user}">
-                <div th:if="${user == null}">
-                    <form method="post" th:action="@{login}">
-                        <button class="btn btn-link pull-right navbar-brand" type="submit">
-                            ログイン
-                        </button>
-                    </form>
-                    <form th:if="${user != null}" id="userId" method="post" th:action="@{logout}">
-                        <p th:text="${user.getNickname()}"></p>
-                        <button class="btn btn-link pull-right navbar-brand" type="submit">
-                            ログアウト
-                        </button>
-                    </form>
-                </div>
+            <!-- <div class="user_info" th:object="${user}">
+                <form th:if="${user == null}" method="post" th:action="@{login}">
+                    <button class="btn btn-link pull-right navbar-brand" type="submit">
+                        ログイン
+                    </button>
+                </form> -->
+                <p th:text="${user.getNickname()}"></p>
+                <form th:if="${user != null}" id="userId" method="post" th:action="@{logout}">
+                    <p th:text="${user.getNickname()}"></p>
+                    <button class="btn btn-link pull-right navbar-brand" type="submit">
+                        ログアウト
+                    </button>
+                </form>
             </div>
         </div>
     </header>
