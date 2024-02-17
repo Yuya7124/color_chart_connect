@@ -19,9 +19,8 @@
                         ログイン
                     </button>
                 </form> -->
-                <p th:text="${user.getNickname()}"></p>
-                <form th:if="${user != null}" id="userId" method="post" th:action="@{logout}">
-                    <p th:text="${user.getNickname()}"></p>
+                <form th:if="${user == null}" id="userId" method="post" th:object="${user}" th:action="@{logout}">
+                    <p th:text="${userId}"></p>
                     <button class="btn btn-link pull-right navbar-brand" type="submit">
                         ログアウト
                     </button>

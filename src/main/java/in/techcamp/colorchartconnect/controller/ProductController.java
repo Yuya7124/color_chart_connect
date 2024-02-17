@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Base64;
 
 @Controller
@@ -38,7 +39,12 @@ public class ProductController {
 
   // 一覧画面
   @GetMapping
-  public String showProducts(Model model){
+  public String showProducts(Model model, Principal principal){
+
+    String userId = principal.getName(); // ログインユーザのユーザ名を取得    
+    model.addAttribute("userId", userId);
+
+    //投稿情報
     var productList = productRepository.findAll();
     // Base64エンコードされた画像データをセット
     try {
