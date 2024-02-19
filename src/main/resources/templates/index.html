@@ -11,22 +11,29 @@
     <!-- Header -->
     <header class="header_menu">
         <nav layout:replace="~{layout/header::header}"></nav>
-        <div class="new_product">
-            <a class="new_btn" th:href="@{/product}">新規投稿</a>
-            <!-- <div class="user_info" th:object="${user}">
-                <form th:if="${user == null}" method="post" th:action="@{login}">
-                    <button class="btn btn-link pull-right navbar-brand" type="submit">
-                        ログイン
-                    </button>
-                </form> -->
-                <form th:if="${user == null}" id="userId" method="post" th:object="${user}" th:action="@{logout}">
-                    <p th:text="${userId}"></p>
-                    <button class="btn btn-link pull-right navbar-brand" type="submit">
-                        ログアウト
-                    </button>
-                </form>
+        <form th:unless="${#authorization.expression('isAuthenticated()')}" method="post" th:action="@{login}">
+            <div class="acount_status">
+                <div class="new_product">
+                    <a class="new_btn" th:href="@{/signup}">新規登録</a>
+                </div>
+                <button class="acount_btn" type="submit">
+                    ログイン
+                </button>
             </div>
-        </div>
+        </form>
+        <form th:if="${#authorization.expression('isAuthenticated()')}" id="userId" method="post" th:object="${user}" th:action="@{logout}">
+            <div class="acount_status">
+                <p class="usertext" th:text="${userId}"></p>
+                <div class="new_product">
+                    <a class="new_btn" th:href="@{/product}">新規投稿</a>
+                </div>
+                <button class="acount_btn" type="submit">
+                    ログアウト
+                </button>
+            </div>
+        </form>
+        
+        
     </header>
     <!-- contents -->
     <h1 class="title_name">投稿一覧</h1>

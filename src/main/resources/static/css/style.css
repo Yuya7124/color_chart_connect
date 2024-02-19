@@ -26,10 +26,33 @@
   text-align: center;
 }
 
+.usertext {
+  font-size: 16px;
+  color: #ffffff;
+  margin-right: 30px;
+}
+
 .new_btn {
-  padding-top: 1px;
+  /* padding-top: 1px; */
   font-size: 16px;
   color: #000000;
+}
+
+.acount_btn {
+  font-size: 16px;
+  color: #000000;
+  margin: 12px 30px 0 0;
+  width: 100px;
+  height: 27px;
+  border-radius: 5px;
+  background-color: #aeffdd;
+  border: 1px solid #8f8f8f;
+  text-align: center;
+}
+
+.acount_status {
+  display: flex;
+  justify-content: space-around;
 }
 
 body {
