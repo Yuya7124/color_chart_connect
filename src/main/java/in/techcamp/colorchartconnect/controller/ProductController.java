@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
+
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,8 +42,8 @@ public class ProductController {
   @GetMapping
   public String showProducts(Model model, Principal principal){
 
-    String userId = principal.getName(); // ログインユーザのユーザ名を取得    
-    model.addAttribute("userId", userId);
+    String nickname = principal.getName(); // ログインユーザのユーザ名を取得    
+    model.addAttribute("nickname", nickname);
 
     //投稿情報
     var productList = productRepository.findAll();
@@ -73,7 +74,10 @@ public class ProductController {
 
   //データ保存
   @PostMapping("/product")
-  public String saveProduct(@Valid @ModelAttribute("productForm") ProductForm form, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) throws IOException {
+  public String saveProduct(@Valid @ModelAttribute("productForm") ProductForm form, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file, Principal principal) throws IOException {
+    
+    String nickname = principal.getName(); // ログインユーザのユーザ名を取得
+
     // 入力チェック
     if (bindingResult.hasErrors()){
       // エラー発生時
@@ -92,6 +96,7 @@ public class ProductController {
         // 保存するProductEntityの作成
         form.setImage_filename(fileName);
         form.setImage_data(compressedImageData);
+        form.setNickname(nickname);
       }
       else {
         // 保存するProductEntityの作成
@@ -104,7 +109,7 @@ public class ProductController {
     }
 
      model.addAttribute("productForm", form);
-     productRepository.insert(form.getProduct_name(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
+     productRepository.insert(form.getProduct_name(), form.getNickname(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
      return "redirect:/";
   }
 

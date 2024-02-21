@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public SignupForm getLoginUser(String nickname){
-    return userRepository.findLoginUser(nickname);
+  public SignupForm getLoginUserName(String nickname){
+    return userRepository.findLoginUserName(nickname);
   }
 }

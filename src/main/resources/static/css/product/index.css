@@ -21,7 +21,7 @@
   font-size: 18px;
 }
 
-.image_name {
+.image_name, .contributor {
   text-align: center;
   margin: 2px 0 0 10px;
 }

@@ -9,5 +9,5 @@ public interface UserService {
   public void signup(UserEntity user);
   
   //ログインユーザー情報取得
-  public SignupForm getLoginUser(String nickname);
+  public SignupForm getLoginUserName(String nickname);
 }

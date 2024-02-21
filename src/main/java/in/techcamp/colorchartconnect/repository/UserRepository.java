@@ -10,5 +10,7 @@ public interface UserRepository {
   @Insert("INSERT INTO user (nickname, email, password, role) VALUES (#{nickname}, #{email}, #{password}, #{role})")
   void insertOne(@Param("nickname") String nickname, @Param("email") String email, @Param("password") String password, @Param("role") String role);
   @Select("select * from user where nickname = #{nickname}")
-  public SignupForm findLoginUser(String userId);
+  public SignupForm findLoginUserName(String nickname);
+  @Select("select user_id, nickname from user = #{user_id}")
+  public SignupForm findLoginUserID(long userId);
 }

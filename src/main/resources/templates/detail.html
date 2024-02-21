@@ -25,7 +25,10 @@
       <label class="info_label">作品名：</label>
       <label th:text="${product.getProduct_name}"></label>
     </div>
-
+    <div class="product_info">
+      <label class="info_label">投稿者：</label>
+      <label th:text="${product.getNickname}"></label>
+    </div>
     <div class="product_info">
       <label class="info_label">カラーガイド：</label><br>
       <label th:text="${product.getColor_chart}"></label>

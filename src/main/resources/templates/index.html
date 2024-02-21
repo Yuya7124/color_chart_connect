@@ -23,7 +23,7 @@
         </form>
         <form th:if="${#authorization.expression('isAuthenticated()')}" id="userId" method="post" th:object="${user}" th:action="@{logout}">
             <div class="acount_status">
-                <p class="usertext" th:text="${userId}"></p>
+                <p class="usertext" th:text="${nickname}"></p>
                 <div class="new_product">
                     <a class="new_btn" th:href="@{/product}">新規投稿</a>
                 </div>
@@ -48,6 +48,14 @@
                     <label>作品名:</label>
                     <a class="image_name" th:text="${product.getProduct_name()}"
                        th:href="@{/product/{product_id}(product_id=${product.getProduct_id()})}"></a>
+                </div>  
+                <div class="product_name" th:if="${product.getNickname() == null}">
+                    <label>投稿者:</label>
+                    <label class="contributor">名無し</label>
+                </div>
+                <div class="product_name" th:unless="${product.getNickname() == null}">
+                    <label>投稿者:</label>
+                    <label  class="contributor" th:text="${product.getNickname()}"></label>
                 </div>
             </div>
         </div>

@@ -15,6 +15,8 @@ import java.io.IOException;
 public class ProductForm {
   @Id
   private long product_id;
+  @Id
+  private String nickname;
   @NotBlank
   private String product_name;
   @NotBlank

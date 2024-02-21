@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS product (
     product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
+    nickname VARCHAR(256),
     product_name VARCHAR(256),
     color_chart VARCHAR(1000),
     image_data LONGBLOB,

@@ -24,10 +24,11 @@ public class LoginController {
   }
 
   @PostMapping("/login")
-  public String postLogin(@PathVariable String userId, Model model, SignupForm form){
+  public String postLogin(@PathVariable String nickname, Long userId, Model model, SignupForm form){
     
-    model.addAttribute(userId, "userId");
-    userRepository.findLoginUser(userId);
+    model.addAttribute(nickname, "nickname");
+    // ユーザ情報取得
+    userRepository.findLoginUserName(nickname);
     log.info(form.toString());
     return "redirect:/";
   }
