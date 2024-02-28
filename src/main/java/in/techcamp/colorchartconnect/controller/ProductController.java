@@ -1,5 +1,6 @@
 package in.techcamp.colorchartconnect.controller;
 
+import in.techcamp.colorchartconnect.entity.UserEntity;
 import in.techcamp.colorchartconnect.form.ProductForm;
 import in.techcamp.colorchartconnect.repository.ProductRepository;
 import jakarta.validation.Valid;
@@ -8,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -42,8 +45,10 @@ public class ProductController {
   @GetMapping
   public String showProducts(Model model, Principal principal){
 
-    String nickname = principal.getName(); // ログインユーザのユーザ名を取得    
-    model.addAttribute("nickname", nickname);
+    if (principal != null) {
+       String nickname = principal.getName(); // ログインユーザのユーザ名を取得
+       model.addAttribute("nickname", nickname);
+    }
 
     //投稿情報
     var productList = productRepository.findAll();
@@ -74,7 +79,7 @@ public class ProductController {
 
   //データ保存
   @PostMapping("/product")
-  public String saveProduct(@Valid @ModelAttribute("productForm") ProductForm form, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file, Principal principal) throws IOException {
+  public String saveProduct(@Valid @ModelAttribute("productForm") ProductForm form, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file, Principal principal, @AuthenticationPrincipal UserEntity user) throws IOException {
     
     String nickname = principal.getName(); // ログインユーザのユーザ名を取得
 
@@ -108,9 +113,9 @@ public class ProductController {
       return showProductForm(form);
     }
 
-     model.addAttribute("productForm", form);
-     productRepository.insert(form.getProduct_name(), form.getNickname(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
-     return "redirect:/";
+    model.addAttribute("productForm", form);
+    productRepository.insert(form.getProduct_name(), form.getNickname(), form.getColor_chart(), form.getImage_data(), form.getImage_filename(),form.getComment());
+    return "redirect:/";
   }
 
   // 詳細画面

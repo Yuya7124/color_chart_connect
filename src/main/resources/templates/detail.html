@@ -37,13 +37,15 @@
       <label class="info_label">コメント：</label><br>
       <label th:text="${product.getComment}"></label>
     </div>
-    <div class="edit_menu">
-      <div class="edit_text">
-        <a class="edit_btn" th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+      <div class="edit_menu">
+        <div class="edit_text">
+          <a class="edit_btn" th:href="@{/product/{product_id}/edit(product_id=${product.getProduct_id()})}">編集</a>
+        </div>
+        <form method="post" class="delete" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
+          <button type="submit" class="delete_btn">削除</button>
+        </form>
       </div>
-      <form method="post" class="delete" th:action="@{/product/{product_id}/delete(product_id=${product.getProduct_id()})}">
-        <button type="submit" class="delete_btn">削除</button>
-      </form>
     </div>
       <div class="back">
         <a class="back_menu" href="/">戻る</a>

@@ -32,12 +32,10 @@
                 </button>
             </div>
         </form>
-        
-        
     </header>
+
     <!-- contents -->
     <h1 class="title_name">投稿一覧</h1>
-
     <form id="productForm" method="post" class="product_form" th:object="${product}" enctype="multipart/form-data">
         <div class="product_list" th:each="product:${productList}">
             <div class="product_data">
